@@ -17,11 +17,27 @@
 
 
 	KO.Config = {
-		variableX : '', // please don't keep me - only for example syntax!
+		age : '0', // please don't keep me - only for example syntax!
+		virginity : '0',
+		partners :'0',
+		activeyears : '0',
+		rate : '0',
+		answers : [],
 
 		init : function () {
 			console.debug('Kickoff is running');
+		},
+
+		calculateRate : function () {
+
+			KO.Config.activeyears = KO.Config.age - KO.Config.virginity;
+
+			KO.Config.rate  = KO.Config.activeyears / KO.Config.partners;
+
+			console.log("your rate is : ", KO.Config.rate );
+			
 		}
+
 	};
 
 	// Example module
