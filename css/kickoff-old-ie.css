@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /**
  * Site dependencies
  */
@@ -16,6 +17,15 @@
  * Usage:
  * font-size : em(12);
  * font-size : em(12, 24);
+ */
+/**
+ * Convert pixels to rems
+ * For a relational value of 12px write rem(12) when the parent is 16px
+ * If the parent is another value say 24px write rem(12, 24)
+ *
+ * Usage:
+ * font-size : rem(12);
+ * font-size : rem(12, 24);
  */
 /**
  * Strips the units from a value. e.g. 12px -> 12
@@ -41,6 +51,17 @@
    * kickoff-old-ie.scss ignores any content in media-queries with values less
      than the $fix-mqs var value
    ========================================================================== */
+/**
+ * $mq-base var:
+ * This is needed because browsers do not calculate em-based
+ * media queries correctly. It is set to 16 because we think
+ * the majority of users will have their browser set to 100%
+ * zoom level.
+ *
+ * See below for an explanation:
+ * http://www.filamentgroup.com/lab/how-we-learned-to-leave-body-font-size-alone.html
+ *
+ */
 /*
    Min-width media query:
    * Equivalent to: @media screen and (min-width: 20em) { ... }
@@ -252,9 +273,9 @@ body {
   font-size: 1rem;
   line-height: 1.4;
   color: #444;
-  -webkit-font-feature-settings: "liga", "dlig";
-     -moz-font-feature-settings: "liga", "dlig";
-          font-feature-settings: "liga", "dlig"; }
+  -webkit-font-feature-settings: "liga","dlig";
+     -moz-font-feature-settings: "liga","dlig";
+          font-feature-settings: "liga","dlig"; }
 
 /**
  * Paragraphs
@@ -453,10 +474,10 @@ sub, sup {
   vertical-align: baseline; }
 
 sup {
-  top: -0.5em; }
+  top: -.5em; }
 
 sub {
-  bottom: -0.25em; }
+  bottom: -.25em; }
 
 samp {
   font-family: Menlo, Monaco, "Courier New", monospace; }
@@ -567,7 +588,7 @@ samp {
   .btn.disabled, .tabs a.disabled, .btn[disabled], .tabs a[disabled] {
     cursor: default;
     background-image: none;
-    opacity: 0.65; }
+    opacity: .65; }
 
 .btn--primary {
   background-color: #3498db; }
@@ -590,8 +611,8 @@ samp {
   font-size: 0.8rem;
   line-height: 1.5;
   height: 1.5em;
-  padding-right: 0.75em;
-  padding-left: 0.75em;
+  padding-right: .75em;
+  padding-left: .75em;
   border-radius: 3px; }
 
 .btn--pill {
@@ -615,8 +636,8 @@ input[type="submit"].btn--block, input[type="reset"].btn--block, input[type="but
   font-size: inherit;
   line-height: inherit;
   height: auto;
-  padding-right: 0.5em;
-  padding-left: 0.5em; }
+  padding-right: .5em;
+  padding-left: .5em; }
 
 /**
  * Close Button: for lightboxes etc
@@ -859,7 +880,7 @@ input[type="submit"].btn--block, input[type="reset"].btn--block, input[type="but
   display: block;
   width: 100%;
   height: 2.5em;
-  padding: 0.5em;
+  padding: .5em;
   font-size: 20px;
   font-size: 1rem;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -971,8 +992,8 @@ button, input[type="button"], input[type="reset"], input[type="submit"] {
   display: block; }
   .control input[type="radio"], .control input[type="checkbox"] {
     vertical-align: middle;
-    margin-right: 0.5em;
-    margin-top: -0.1em;
+    margin-right: .5em;
+    margin-top: -.1em;
     display: inline;
     line-height: normal; }
 
@@ -1104,7 +1125,7 @@ button, input[type="button"], input[type="reset"], input[type="submit"] {
  * ================================= */
 .control-indicator {
   position: absolute;
-  top: 0.25em;
+  top: .25em;
   left: 0;
   display: block;
   width: 19px;
@@ -1137,7 +1158,7 @@ button, input[type="button"], input[type="reset"], input[type="submit"] {
     z-index: -1;
     /* Put the input behind the label so it doesn't overlay text */ }
   .control--custom input:focus ~ .control-indicator {
-    box-shadow: 0 0 0 0.075em #fff, 0 0 0 0.2em #a3b1b2; }
+    box-shadow: 0 0 0 .075em #fff, 0 0 0 .2em #a3b1b2; }
   .control--custom input:checked ~ .control-indicator {
     color: #fff;
     background-color: #a3b1b2; }
@@ -1175,7 +1196,7 @@ button, input[type="button"], input[type="reset"], input[type="submit"] {
     top: 0;
     right: -1px;
     bottom: 0;
-    padding: 0.44em 1em 0;
+    padding: .44em 1em 0;
     background-color: #d9d9d9; }
   .form-input--fileWrapper--styled .form-input-file {
     opacity: 0;
@@ -1203,22 +1224,21 @@ button, input[type="button"], input[type="reset"], input[type="submit"] {
   appearance: none;
   -webkit-appearance: none;
   /* Magic font size number to prevent iOS text zoom */
-  padding: 0.5em;
+  padding: .5em;
   height: 2.3em;
   line-height: 1; }
 
 /* This hides native dropdown button arrow in IE 10/11+ so it will have the custom appearance, IE 9 and earlier get a native select */
 @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
   .form-input--selectWrapper select::-ms-expand {
-    display: none; }
- }
+    display: none; } }
 
 /* Custom arrow sits on top of the select - could be an image, SVG, icon font, etc. or the arrow could just baked into the bg image on the select */
 .form-input--selectWrapper:after {
   background: none;
   color: #bbb;
   content: "\25BC";
-  font-size: 0.7em;
+  font-size: .7em;
   padding: 0;
   position: absolute;
   right: 1.2em;
@@ -1239,10 +1259,10 @@ button, input[type="button"], input[type="reset"], input[type="submit"] {
   max-width: 110%;
   min-width: 110%;
   /* A zero right padding is needed or the native arrow can show up. Downside is the text will run over the arrow */
-  padding: 0.6em 0 0.5em 0.8em;
+  padding: .6em 0 .5em .8em;
   /* Window is a Firefox way of hiding the arrow, sometimes works */
   -moz-appearance: window;
-  text-indent: 0.01px;
+  text-indent: .01px;
   text-overflow: ""; }
 
 /* Focus style - TODO: Fix in FF */
@@ -1379,25 +1399,25 @@ img, object, embed, video {
   .l-blockGrid.l-blockGrid--2up > li {
     width: 50%; }
   .l-blockGrid.l-blockGrid--3up > li {
-    width: 33.33333333%; }
+    width: 33.3333333333%; }
   .l-blockGrid.l-blockGrid--4up > li {
     width: 25%; }
   .l-blockGrid.l-blockGrid--5up > li {
     width: 20%; }
   .l-blockGrid.l-blockGrid--6up > li {
-    width: 16.66666667%; }
+    width: 16.6666666667%; }
   .l-blockGrid.l-blockGrid--7up > li {
-    width: 14.28571429%; }
+    width: 14.2857142857%; }
   .l-blockGrid.l-blockGrid--8up > li {
     width: 12.5%; }
   .l-blockGrid.l-blockGrid--9up > li {
-    width: 11.11111111%; }
+    width: 11.1111111111%; }
   .l-blockGrid.l-blockGrid--10up > li {
     width: 10%; }
   .l-blockGrid.l-blockGrid--11up > li {
-    width: 9.09090909%; }
+    width: 9.0909090909%; }
   .l-blockGrid.l-blockGrid--12up > li {
-    width: 8.33333333%; }
+    width: 8.3333333333%; }
 
 /*
 	Tabs
@@ -1754,43 +1774,33 @@ textarea[contenteditable] {
     /* Black prints faster: h5bp.com/s */
     box-shadow: none !important;
     text-shadow: none !important; }
-
   a:visited {
     text-decoration: underline; }
   a[href]:after {
     content: " (" attr(href) ")"; }
-
   abbr[title]:after {
     content: " (" attr(title) ")"; }
-
   /*
 	 * Don't show links for images, or javascript/internal links
 	 */
   .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
     content: ""; }
-
   pre, blockquote {
     border: 1px solid #999;
     page-break-inside: avoid; }
-
   thead {
     display: table-header-group;
     /* h5bp.com/t */ }
-
   tr, img {
     page-break-inside: avoid; }
-
   img {
     max-width: 100% !important; }
-
   @page {
-    margin: 0.5cm; }
+    margin: .5cm; }
 
   p, h2, h3 {
     orphans: 3;
     widows: 3; }
-
   h2, h3 {
-    page-break-after: avoid; }
- }
+    page-break-after: avoid; } }
 /*# sourceMappingURL=kickoff-old-ie.css.map */
