@@ -14,13 +14,6 @@
 		<!--[if gt IE 8]><!-->
 			<link rel="stylesheet" href="css/kickoff.css">
 		<!--<![endif]-->
-
-		<!-- For mobile icons etc, consider:
-			 * https://gist.github.com/mrmartineau/6403816
-			 * http://iconifier.net
-		-->
-
-		<script>window.grunticon=function(e){if(e&&3===e.length){var t=window,n=!(!t.document.createElementNS||!t.document.createElementNS("http://www.w3.org/2000/svg","svg").createSVGRect||!document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#Image","1.1")||window.opera&&-1===navigator.userAgent.indexOf("Chrome")),o=function(o){var a=t.document.createElement("link"),r=t.document.getElementsByTagName("script")[0];a.rel="stylesheet",a.href=e[o&&n?0:o?1:2],a.media="only x",r.parentNode.insertBefore(a,r),setTimeout(function(){a.media="all"})},a=new t.Image;a.onerror=function(){o(!1)},a.onload=function(){o(1===a.width&&1===a.height)},a.src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="}};grunticon(["/img/icons/icons.data.svg.css", "/img/icons/icons.data.png.css", "/img/icons/icons.fallback.css"]);</script>
 		<noscript><link href="/img/icons/icons.fallback.css" rel="stylesheet"></noscript>
 
 		<script src="/js/libs/modernizr.min.js"></script>
@@ -31,34 +24,43 @@
 		</div>
 
 		<header class="masthead" role="banner">
-			<h1>Sexcess Rate</h1>
+			<image class="logo" src="/img/logo.png"></image>
+				<h1 class="main-title">WHAT IS YOUR SEXCESS RATE ?</h1>
 		</header>
 
 		<div id="mainContent" class="l-container" role="main">
-				<form action="action_page.php">
-				How old are you ? <br>
-				<input type="text" name="age" value="">
-				<br>
-				When you lose your virginity ?<br>
-				<input type="text" name="lastname" value="">
-				<br>
-				How many people have you sleep with ?<br>
-				<input type="text" name="lastname" value="">
-				<br>
-				<br>
-				<input type="submit" value="Submit">
-				</form>
 
-			<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-				<!-- SexcessrateAds -->
-				<ins class="adsbygoogle"
-					style="display:inline-block;width:300px;height:600px"
-					data-ad-client="ca-pub-6724605357225169"
-					data-ad-slot="7098889040">
-				</ins>
-			<script>
-			(adsbygoogle = window.adsbygoogle || []).push({});
-			</script>
+			<div class="g-col column-big">	
+					<form>
+						<h2 class="basic-text">HOW OLD ARE YOU ? </h2>
+						<input class="round-bubble" type="text" name="age" maxlength="2" value="">
+						<br>
+						<h2 class="basic-text">WHEN WAS YOUR FIRST TIME ?</h2>
+						<input  class="round-bubble" type="text" name="first-time" maxlength="2" value="">
+						<br>
+						<h2 class="basic-text">ROUGHLY, HOW MANY PEOPLE YOU HAVE SEX ? </h2>
+						<input class="round-bubble" type="text" maxlength="4" name="people" value="">
+						<br>
+						<br>
+						<input class="round-bubble-button" type="calculate" value="calculate">
+					</form>
+			    </div>
+			    <div class="g-col column-sidebar">
+					<div class="ads ">
+						<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+							<!-- SexcessrateAds -->
+							<ins class="adsbygoogle"
+								style="display:inline-block;width:300px;height:600px"
+								data-ad-client="ca-pub-6724605357225169"
+								data-ad-slot="7098889040">
+							</ins>
+						<script>
+						(adsbygoogle = window.adsbygoogle || []).push({});
+						</script>
+				    </div>
+			    </div>
+			</div>
+
 		</div><!-- Close .l-container -->
 
 		<!-- JavaScript at the bottom for fast page loading -->

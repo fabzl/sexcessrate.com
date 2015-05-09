@@ -2,7 +2,7 @@
  * Global app/site styles
  */
 body {
-	background-color: $color-bg;
+	background-color: #07a089;
 }
 
 /**
@@ -12,10 +12,29 @@ body {
 	padding-left: #{$layout-margin}px;
 	padding-right: #{$layout-margin}px;
 	width: 95%;
-	max-width: #{$layout-max-width}px;
+//	max-width: #{$layout-max-width}px;
 	margin: 0 auto;
 
 	.lt-ie9 & {
 		min-width: #{$layout-min-width}px;
 	}
 }
+
+
+
+
+@font-face {
+	font-family:'../font/OstrichSansRounded-Medium';
+	src: url('../font/OstrichSansRounded-Medium_gdi.eot');
+	src: url('../font/OstrichSansRounded-Medium_gdi.eot?#iefix') format('embedded-opentype'),
+		url('../font/OstrichSansRounded-Medium_gdi.woff') format('woff'),
+		url('../font/OstrichSansRounded-Medium_gdi.ttf') format('truetype'),
+		url('../font/OstrichSansRounded-Medium_gdi.otf') format('opentype'),
+		url('../font/OstrichSansRounded-Medium_gdi.svg#OstrichSansRounded-Medium') format('svg');
+	font-weight: 500;
+	font-style: normal;
+	font-stretch: normal;
+	unicode-range: U+0020-2122;
+}
+
+

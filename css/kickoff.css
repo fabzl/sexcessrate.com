@@ -270,11 +270,11 @@ html {
       font-size: 20px; } }
 
 body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'OstrichSansRounded-Medium', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 20px;
   font-size: 1rem;
   line-height: 1.4;
-  color: #444;
+  color: #312a11;
   -webkit-font-feature-settings: "liga","dlig";
      -moz-font-feature-settings: "liga","dlig";
           font-feature-settings: "liga","dlig"; }
@@ -283,7 +283,7 @@ body {
  * Paragraphs
  */
 p {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'OstrichSansRounded-Medium', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 20px;
   font-size: 1rem;
   margin-top: 0;
@@ -342,15 +342,15 @@ small {
  * Links
  */
 a, a:link {
-  color: #3498db;
+  color: #312a11;
   text-decoration: none; }
 a:visited {
-  color: #3498db;
+  color: #312a11;
   text-decoration: none; }
 a:hover, a:focus {
-  color: #196090; }
+  color: black; }
 a:active {
-  color: #196090; }
+  color: black; }
 
 /**
  * Lists
@@ -497,13 +497,13 @@ samp {
   text-align: right; }
 
 ::-moz-selection {
-  color: #fff;
-  background: #3498db;
+  color: #f2542a;
+  background: #312a11;
   text-shadow: none; }
 
 ::selection {
-  color: #fff;
-  background: #3498db;
+  color: #f2542a;
+  background: #312a11;
   text-shadow: none; }
 
 /**
@@ -593,11 +593,11 @@ samp {
     opacity: .65; }
 
 .btn--primary {
-  background-color: #3498db; }
+  background-color: #312a11; }
   .btn--primary, .btn--primary:link, .btn--primary:visited {
     color: #fff; }
   .btn--primary:hover, .btn--primary:active, .btn--primary:focus {
-    background-color: #217dbb; }
+    background-color: #0b0a04; }
 
 .btn--large {
   font-size: 25px;
@@ -653,7 +653,7 @@ input[type="submit"].btn--block, input[type="reset"].btn--block, input[type="but
   width: 20px;
   line-height: 17px;
   background: #000;
-  color: #3498db;
+  color: #312a11;
   text-align: center;
   border-radius: 5px;
   cursor: pointer;
@@ -841,7 +841,7 @@ input[type="submit"].btn--block, input[type="reset"].btn--block, input[type="but
   font-size: 25px;
   font-size: 1.25rem;
   line-height: 1.4;
-  color: #444;
+  color: #312a11;
   border: 0;
   border-bottom: 1px solid #eee;
   white-space: normal; }
@@ -864,11 +864,11 @@ input[type="submit"].btn--block, input[type="reset"].btn--block, input[type="but
 
 .form-label {
   display: block;
-  color: #444;
+  color: #312a11;
   font-weight: bold; }
   .form-label small {
     font-weight: normal;
-    color: #919191; }
+    color: #a38b38; }
 
 .form-input {
   display: block;
@@ -877,9 +877,9 @@ input[type="submit"].btn--block, input[type="reset"].btn--block, input[type="but
   padding: .5em;
   font-size: 20px;
   font-size: 1rem;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'OstrichSansRounded-Medium', "Helvetica Neue", Helvetica, Arial, sans-serif;
   line-height: 1.4;
-  color: #444;
+  color: #312a11;
   font-weight: normal;
   vertical-align: baseline;
   background-color: #fff;
@@ -1536,7 +1536,7 @@ img, object, embed, video {
   max-width: 100%;
   margin-bottom: 28px;
   border-spacing: 0;
-  background-color: #f1f1f1; }
+  background-color: #07a089; }
   .table > thead th, .table > thead td, .table > tbody th, .table > tbody td, .table > tfoot th, .table > tfoot td {
     padding: 8px;
     line-height: 28px;
@@ -1552,7 +1552,7 @@ img, object, embed, video {
   .table > tbody + tbody {
     border-top: 2px solid #ddd; }
   .table .table {
-    background-color: #f1f1f1; }
+    background-color: #07a089; }
 
 th {
   text-align: left; }
@@ -1694,10 +1694,10 @@ pre {
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
-  background-color: #d7d7d7; }
+  background-color: #056f5f; }
 
 ::-webkit-scrollbar-thumb {
-  background: #8b8b8b;
+  background: black;
   cursor: pointer;
   border-radius: 5px; }
 
@@ -1712,7 +1712,7 @@ pre {
  * Global app/site styles
  */
 body {
-  background-color: #f1f1f1; }
+  background-color: #07a089; }
 
 /**
  * Default layout container
@@ -1721,10 +1721,18 @@ body {
   padding-left: 0px;
   padding-right: 0px;
   width: 95%;
-  max-width: 1000px;
   margin: 0 auto; }
   .lt-ie9 .l-container {
     min-width: 1000px; }
+
+@font-face {
+  font-family: '../font/OstrichSansRounded-Medium';
+  src: url('../font/OstrichSansRounded-Medium_gdi.eot');
+  src: url('../font/OstrichSansRounded-Medium_gdi.eot?#iefix') format('embedded-opentype'), url('../font/OstrichSansRounded-Medium_gdi.woff') format('woff'), url('../font/OstrichSansRounded-Medium_gdi.ttf') format('truetype'), url('../font/OstrichSansRounded-Medium_gdi.otf') format('opentype'), url('../font/OstrichSansRounded-Medium_gdi.svg#OstrichSansRounded-Medium') format('svg');
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  unicode-range: U20 -2122; }
 
 /*
    Icons
@@ -1747,6 +1755,65 @@ body {
  * Views
  * =================================
  */
+.logo {
+  padding-left: 10%;
+  display: inline-block;
+  float: left;
+  max-width: 30%; }
+
+.main-title {
+  display: inline-block;
+  float: left;
+  max-width: 70%;
+  padding-top: 2em;
+  padding-left: 100px;
+  font-size: 3em;
+  -webkit-transform: translateY(-50%);
+     -moz-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+          transform: translateY(-50%); }
+
+.column-big {
+  display: inline-block;
+  float: left;
+  max-width: 69%;
+  padding-left: 10%; }
+
+.column-sidebar {
+  display: inline-block;
+  float: right;
+  max-width: 29%; }
+
+.round-bubble {
+  background-color: #c2d14a;
+  height: 50px;
+  width: 30%;
+  border: none;
+  border-radius: 25px;
+  display: inline-block;
+  color: #312a11;
+  font-size: 2em;
+  text-align: center;
+  font-family: 'OstrichSansRounded-Medium'; }
+
+.round-bubble-button {
+  border: none;
+  background-color: #c2d14a;
+  height: 90px;
+  width: 100%;
+  text-align: center;
+  border-radius: 25px;
+  font-size: 2.5em;
+  color: #312a11;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  font-family: 'OstrichSansRounded-Medium'; }
+
+.basic-text {
+  display: inline-block; }
+
 /**
  * Helper/utility classes
  * =================================
@@ -1824,7 +1891,7 @@ body {
  * Responsive Utilities
  */
 * {
-  -webkit-tap-highlight-color: #3498db !important; }
+  -webkit-tap-highlight-color: #312a11 !important; }
 
 /* A hack for HTML5 contenteditable attribute on mobile */
 textarea[contenteditable] {

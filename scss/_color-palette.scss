@@ -12,18 +12,25 @@ $pink                         : #c3325f;
 $purple                       : #8e44ad;
 $gray                         : #95a5a6;
 
+$sunny-brown				: #312a11;
+$sunny-red					: #980017; 
+$sunny-orange				: #f2542a; 
+$sunny-lime					: #c2d14a; 
+$sunny-petroleum			: #07a089; 
+
+
 // Colour Scheme
-$color-primary                : $blue;
-$color-secondary              : $red;
-$color-highlight              : $yellow;
+$color-primary                : $sunny-brown;
+$color-secondary              : $sunny-red;
+$color-highlight              : $sunny-red;
 
 // Common colours
-$color-text                   : #444;
-$color-bg                     : #f1f1f1;
-$color-border                 : #ddd;
+$color-text                   : $sunny-brown;
+$color-bg                     : $sunny-petroleum;
+$color-border                 : $sunny-lime;
 
 // Text Selection
-$color-selection              : #fff;
+$color-selection              : $sunny-orange;
 $color-selection-bg           : $color-primary;
 
 

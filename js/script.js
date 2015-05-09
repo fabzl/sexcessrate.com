@@ -1,22 +1,21 @@
 /*	Author:
-		TMW - (Author Name Here)
+		Fabz&co Fabz - Fabian Andrade.. fabz.tv
 */
 
-// Create a closure to maintain scope of the '$' and KO (Kickoff)
-;(function(KO, $) {
-
+// Create a closure to maintain scope of the '$' and Core
+;(function(Core, $) {
 	$(function() {
 		// Any globals go here in CAPS (but avoid if possible)
 
 		// follow a singleton pattern
 		// (http://addyosmani.com/resources/essentialjsdesignpatterns/book/#singletonpatternjavascript)
 
-		KO.Config.init();
+		Core.Config.init();
 
 	});// END DOC READY
 
 
-	KO.Config = {
+	Core.Config = {
 		age : '0', // please don't keep me - only for example syntax!
 		virginity : '0',
 		partners :'0',
@@ -30,11 +29,11 @@
 
 		calculateRate : function () {
 
-			KO.Config.activeyears = KO.Config.age - KO.Config.virginity;
+			Core.Config.activeyears = Core.Config.age - Core.Config.virginity;
 
-			KO.Config.rate  = KO.Config.activeyears / KO.Config.partners;
+			Core.Config.rate  = Core.Config.activeyears / Core.Config.partners;
 
-			console.log("your rate is : ", KO.Config.rate );
+			console.log("your rate is : ", Core.Config.rate );
 			
 		}
 
@@ -42,9 +41,9 @@
 
 	// Example module
 	/*
-	KO.MyExampleModule = {
+	Core.MyExampleModule = {
 		init : function () {
-			KO.MyExampleModule.setupEvents();
+			Core.MyExampleModule.setupEvents();
 		},
 
 		setupEvents : function () {
@@ -53,4 +52,4 @@
 	};
 	*/
 
-})(window.KO = window.KO || {}, jQuery);
+})(window.Core = window.Core || {}, jQuery);
