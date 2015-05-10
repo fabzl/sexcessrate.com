@@ -1,20 +1,20 @@
 {
-  "name": "kickoff",
-  "title": "Kickoff",
-  "description": "A lightweight front-end framework for creating scalable, responsive sites",
+  "name": "Sexcess Rate",
+  "title": "What is your sexcess rate",
+  "description": "Do you remember how many people have you sleep with ?",
   "version": "4.1.0",
-  "homepage": "http://tmwagency.github.io/kickoff/",
+  "homepage": "http://fabz.tv",
   "authors": [
     {
-      "name": "Zander Martineau",
-      "url": "http://martineau.tv"
+      "name": "Fabz",
+      "url": "http://fabz.tv"
     },
     {
-      "name": "Ashley Nolan",
-      "url": "http://ashleynolan.co.uk"
+      "name": "Frankie Brook",
+      "url": "http://sexcessrate.com"
     },
     {
-      "name": "Contributors",
+      "name": "Fabz & co",
       "url": "https://github.com/tmwagency/kickoff/graphs/contributors"
     }
   ],

@@ -15,8 +15,8 @@
 			<link rel="stylesheet" href="css/kickoff.css">
 		<!--<![endif]-->
 		<noscript><link href="/img/icons/icons.fallback.css" rel="stylesheet"></noscript>
-
 		<script src="/js/libs/modernizr.min.js"></script>
+
 	</head>
 	<body>
 		<div class="skipToContent">
@@ -32,18 +32,38 @@
 
 			<div class="g-col column-big">	
 					<form>
-						<h2 class="basic-text">HOW OLD ARE YOU ? </h2>
-						<input class="round-bubble" type="text" name="age" maxlength="2" value="">
+						<h2 class="basic-text">HOW OLD ARE YOU ?</h2>
+						
+						<input  maxlength="2" class="round-bubble age" type="text" name="age">
+						</input>
+
 						<br>
 						<h2 class="basic-text">WHEN WAS YOUR FIRST TIME ?</h2>
-						<input  class="round-bubble" type="text" name="first-time" maxlength="2" value="">
+						
+						<input class="round-bubble virginity" type="text" name="first-time" maxlength="2" value="">
+						
+						<div class="flavourText flavour-virginity">
+							<h3 class="basic-text flavour"></h3>
+						</div>
+
 						<br>
-						<h2 class="basic-text">ROUGHLY, HOW MANY PEOPLE YOU HAVE SEX ? </h2>
-						<input class="round-bubble" type="text" maxlength="4" name="people" value="">
+						<h2 class="basic-text">ROUGHLY, HOW MANY PEOPLE YOU HAVE SEX ?</h2>
+						<input class="round-bubble people" type="text" maxlength="4" name="people" value="">
+						
+						<div class="flavourText flavour-people">
+							<h3 class="basic-text flavour"></h3>
+						</div>
+
 						<br>
 						<br>
-						<input class="round-bubble-button" type="calculate" value="calculate">
+						<button class="round-bubble-button" type="calculate" value="calculate">CALCULATE</button>
 					</form>
+
+
+						<div class="resultsDisplay">
+							<h3 class="basic-text result"></h3>
+							<div class="chart-container"></div>
+						</div>
 			    </div>
 			    <div class="g-col column-sidebar">
 					<div class="ads ">

@@ -1701,6 +1701,21 @@ pre {
   cursor: pointer;
   border-radius: 5px; }
 
+.icon {
+  font-family: fontawesome;
+  font-weight: bold;
+  font-size: 30px; }
+
+.goal, .completed {
+  fill: white;
+  text-anchor: middle; }
+
+.goal {
+  font-size: 30px; }
+
+.completed {
+  font-size: 95px; }
+
 /**
  * Your app styles
  * =================================
@@ -1794,7 +1809,8 @@ body {
   color: #312a11;
   font-size: 2em;
   text-align: center;
-  font-family: 'OstrichSansRounded-Medium'; }
+  font-family: 'OstrichSansRounded-Medium';
+  margin-left: 8%; }
 
 .round-bubble-button {
   border: none;
