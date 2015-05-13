@@ -53,7 +53,7 @@
 			
 			Core.Config.activeyears = Core.Config.age - Core.Config.virginity;
 
-			Core.Config.rate  = Core.Config.activeyears / Core.Config.partners;
+			Core.Config.rate  = Core.Config.activeyears / Core.Config.partners*100;
 
 			console.log("your rate is : ", Core.Config.rate );	
 
