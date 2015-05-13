@@ -68,8 +68,43 @@
 
 }
 
+.small-button { 
+
+	width: auto;
+	font-size: 1.5em;
+	height : 70px;
+	margin: 0 5px;
+	padding: 0 10px;
+	
+}
+
 .basic-text {
 
 	display: inline-block;
+}
+
+
+#canvas {
+
+	text-align : center;
+	border-radius: 25px;
+	font-size: 2.5em;
+	color: $sunny-brown;
+	background-color: $sunny-lime;
+
+}
+.resultsDisplay {
+
+	padding : 20px;
+	text-align : center;
+	
+
+}
+
+
+.share-btn-container { 
+	margin: 0 auto;
+	text-align: center;
+
 }
 

@@ -25,7 +25,7 @@
 
 		<header class="masthead" role="banner">
 			<image class="logo" src="/img/logo.png"></image>
-				<h1 class="main-title">WHAT IS YOUR SEXCESS RATE ?</h1>
+			<h1 class="main-title">WHAT IS YOUR SEXCESS RATE ?</h1>
 		</header>
 
 		<div id="mainContent" class="l-container" role="main">
@@ -55,11 +55,16 @@
 						<br>
 						<button class="round-bubble-button" type="calculate" value="calculate">CALCULATE</button>
 					</form>
-
-
 						<div class="resultsDisplay">
+							<canvas id="canvas" width="430" height="260">
+		   						<p>We apologize, your browser does not support canvas at this time!</p>
+							</canvas>
 							<h3 class="basic-text result"></h3>
-							<div class="chart-container"></div>
+						</div>
+						
+						<div class="share-btn-container"> 
+							<button class="fb-share round-bubble-button small-button">share your result on Facebook</button>
+							<button class="tw-share round-bubble-button small-button">share your result on Twitter</button>
 						</div>
 			    </div>
 			    <div class="g-col column-sidebar">

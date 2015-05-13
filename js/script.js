@@ -36,10 +36,18 @@
 		textFlavourPaople : document.querySelector(".flavour-people"),
 		
 		calculateRateBtn : document.querySelector(".round-bubble-button"),
+		FBshare : document.querySelector(".fb-share"),
+		TWshare : document.querySelector(".tw-share"),
+
+		canvasObject : document.getElementById("canvas"),
+
+
+
+
 
 		init : function () {
+
 			console.debug('Sexcess rate');
-			
 			Core.Config.calculateRateBtn.addEventListener("click",Core.Config.outputResult);
 		},
 
@@ -125,9 +133,31 @@
 
 	      
 	    
-	        Core.Config.textResult.appendChild(document.createTextNode(Core.Config.rate));
-	      
+	      //  Core.Config.textResult.appendChild(document.createTextNode(Core.Config.rate));
+	      	Core.Config.resultInjectorCanvas(Core.Config.rate);
 		},
+
+		resultInjectorCanvas : function (text) { 
+
+			var context = Core.Config.canvasObject.getContext("2d");
+  			context.fillStyle = "#312a11";
+  			context.font = "bold 90px OstrichSansRounded-Medium";
+  			context.fillText(text, 165, 155);
+
+
+		},
+
+
+	activateShareOnCanvasBtns : function () { 
+
+		Core.Config.TWshare.addEventListener("click",postToTwitter);
+
+		Core.Config.TWshare.addEventListener("click",postCanvasToFacebook);
+		
+
+	}
+
+
 	};
 
 	// Example module
