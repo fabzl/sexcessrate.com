@@ -62,9 +62,11 @@ form {
 	
 	@include respond-min($bp-mid) {
 		transform: rotate(-10deg) translateX(-10%);
+		margin-bottom:70px;
 	}
 	@include respond-min($bp-wide) {
-		transform: rotate(0deg) translateX(-10%);
+		transform: rotate(-5deg) translateX(-10%);
+		margin-bottom:70px;
 	}
 
 }
