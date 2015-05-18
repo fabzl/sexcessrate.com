@@ -1,32 +1,64 @@
-* { 
 
-//	border: solid red 1px;
+
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
 }
+
+
 .logo { 
 
-	//padding-left:10%; 
+//	padding-left:10%; 
 	display : inline-block;
+	padding-top:30px;
+
 	//float: left;
-	//max-width:30%;
+//	max-width:50%;
+
+	@include respond-min($bp-narrow) {
+	
+	}
+	@include respond-min($bp-mid) {
+	
+	}
+	@include respond-min($bp-wide) {
+	
+	}
 }
 
 form { 
 
 	text-align:center;
+	//margin-top:100px;
 }
 
 .main-title {
 
-	display : block;
+	display : inline-block;
 	font-size: 2em;
+	transform:	none;
+	//padding-rigth:10%;
+//	padding-top:5%; 
 	margin-bottom: 50px;
 
 	@include respond-min($bp-mid) {
 
-		display : inline-block;
-		margin-bottom: 50px;
-
+//		display : inline-block;
+//		transform:	translateY(-170px);
 	}
+	@include respond-min($bp-narrow) {
+	
+	}
+	@include respond-min($bp-mid) {
+	
+	}
+	@include respond-min($bp-wide) {
+	
+	}
+
+
+
+
 }
 
 //$bp-narrow            : 400;  // Set in px
@@ -37,9 +69,21 @@ form {
 .header-container {
 
 	text-align:center;
-	background: linear-gradient(top, #07a089 0%,#07a089 60%,#07a089 60%,#312a11 60%,#312a11 70%,#980017 70%,#980017 80%,#f2542a 80%,#f2542a 90%,#c2d14a 90%,#c2d14a 100%);
 	width: 100%;
+	position:relative;
+	
 
+}
+
+.gradient-bg { 
+
+	background: linear-gradient(top, #312a11 0%,#312a11 25%,#980017 25%,#980017 50%,#f2542a 50%,#f2542a 75%,#c2d14a 75%,#c2d14a 100%);
+	width: 150%;
+	height: 60px;
+	transform: rotate(-20deg) translateX(-10%);
+	outline: 1px solid transparent;
+	-webkit-backface-visibility: hidden;
+	margin-bottom:120px;
 }
 
 .column-big { 
@@ -48,27 +92,29 @@ form {
 
 }
 
-.column-sidebar { 
+.flavour { 
 
-	display : inline-block;
-	float: right;
-	max-width:29%;
-
+	margin-top: 5px!important;
+	margin-bottom: 5px!important;
+	height : 1.25rem;
+	color: $sunny-lime!important;
 }
+
 
 .round-bubble { 
 
 	background-color: $sunny-lime;
 	height : 50px;
-	width: 30%;
+	width: 50%;
 	border:none;
 	border-radius: 25px;
 	display: inline-block;
 	color: $sunny-brown;
 	font-size: 2em;
 	text-align : center;
+	min-width: 30px;
 	font-family:'OstrichSansRounded-Medium';
-	margin-left: 8%;
+	//margin-left: 8%;
 	
 }
 
@@ -77,30 +123,58 @@ form {
 	border:none;
 	background-color: $sunny-lime;
 	height : 90px;
-	width: 430px;
+	width: 80%;
 	text-align : center;
 	border-radius: 25px;
 	font-size: 2.5em;
 	color: $sunny-brown;
 	user-select: none;
 	font-family:'OstrichSansRounded-Medium';
-	margin:0 auto;
+	margin-top:20px;
+	margin-bottom:30px;
+
+
+	@include respond-min($bp-mid) {
+		display: inline-block;
+	}
+	@include respond-min($bp-wide) {
+	
+	}
+
+
 
 }
 
 .small-button { 
 
 	width: auto;
-	font-size: 1.5em;
-	height : 70px;
-	margin: 0 5px;
-	padding: 0 10px;
+	max-width:48%;
+	font-size: 1.3em;
+	height : 60px;
+	padding: 0 20px;
+
+
+	@include respond-min($bp-mid) {
+	}
+	@include respond-min($bp-wide) {
+	
+	}
 	
 }
 
 .basic-text {
 
-	display: inline-block;
+	display: block;
+	margin-top: 30px;
+	width:100%;
+
+	@include respond-min($bp-mid) {
+		display: inline-block;
+	}
+	@include respond-min($bp-wide) {
+	
+	}
+
 }
 
 
@@ -115,18 +189,21 @@ form {
 }
 .resultsDisplay {
 
-	padding : 20px;
 	text-align : center;
 	
 }
 
 .share-btn-container { 
-	margin: 0 auto;
+
+	margin: 10px auto;
 	text-align: center;
+	width: 100%;
+
 }
 
 #roadBlock {
 
+	z-index: 1;
 	display: none;
 	position: fixed;
 	width: 100%;
@@ -157,4 +234,28 @@ form {
 
 }
 
+.banner-holder-mobile  { 
 
+	text-align : center;
+	display : block;
+	
+	@include respond-min($bp-mid) {
+		display: none;
+	}
+	@include respond-min($bp-wide) {
+	
+	}
+}
+
+.banner-holder-leaderboard .ad-wrapper  .adsbygoogle{ 
+
+	display : none;
+	text-align : center;
+	
+	@include respond-min($bp-mid) {
+		display: block;
+	}
+	@include respond-min($bp-wide) {
+	
+	}
+}

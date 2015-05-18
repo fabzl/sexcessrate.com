@@ -121,12 +121,12 @@ h6, .h6, .zeta {
 	text-transform: uppercase;
 }
 
-* + h1, * + .h1, * + .alpha,
-* + h2, * + .h2, * + .beta,
-* + h3, * + .h3, * + .gamma,
-* + h4, * + .h4, * + .delta {
-	margin-top: $baseline;
-}
+// * + h1, * + .h1, * + .alpha,
+// * + h2, * + .h2, * + .beta,
+// * + h3, * + .h3, * + .gamma,
+// * + h4, * + .h4, * + .delta {
+// 	margin-top: $baseline;
+// }
 
 small {
 	font-size: 80%;

@@ -92,6 +92,15 @@ function checkAgain() {
 ////////////////////////// THE CORE 
 
 ;(function(Core, $) {
+
+		// WINDOW.RESIZE
+	
+	$(window).resize(function() {
+		
+		Core.Config.setStageSize();
+
+	});
+
 	$(function() {
 		// Any globals go here in CAPS (but avoid if possible)
 		// follow a singleton pattern
@@ -102,6 +111,7 @@ function checkAgain() {
 
 	Core.Config = {
 
+		$window:$(window),
 		answers:{},
 		age : 0,
 		virginity : 0,
@@ -138,7 +148,33 @@ function checkAgain() {
 		init : function () {
 
 			console.debug('Sexcess rate');
+			//Core.Config.setStageSize();
 			Core.Config.loadAnswers();
+		},
+
+		
+		setStageSize:function() {
+
+			// Returns height of HTML document
+
+			Core.Config.$window.stageH = Core.Config.getDimensionsHeight(Core.Config.$window);
+
+			Core.Config.$window.stageW = Core.Config.getDimensionsWidth(Core.Config.$window);
+
+			console.log("stage size is H : ", Core.Config.$window.stageH,"W : ",Core.Config.$window.stageW);
+
+		},
+
+		getDimensionsHeight:function (obj) {
+
+			var value = obj.height();
+			return value;
+		},
+
+		 getDimensionsWidth :function(obj) {
+
+			var value = obj.width();
+			return value;
 		},
 
 		loadAnswers  : function (rate) {
@@ -283,11 +319,12 @@ function checkAgain() {
 		resultInjector : function () { 
 
 			Core.Config.canvasEraser();
-			Core.Config.resultInjectorCanvas(Core.Config.rateTitle,70,30);
-			Core.Config.resultInjectorCanvas(Core.Config.rate+"%",155,70);
-			Core.Config.resultInjectorCanvas(Core.Config.rateDescription1,200,20);		
-			Core.Config.resultInjectorCanvas(Core.Config.rateDescription2,220,20);		
-			Core.Config.resultInjectorCanvas(Core.Config.rateDescription3,240,20);		
+			Core.Config.resultInjectorCanvas("Your Sexcess rate is  :",70,30);
+			Core.Config.resultInjectorCanvas(Core.Config.rateTitle,120,45);
+			Core.Config.resultInjectorCanvas(Core.Config.rate+"%",200,90);
+			Core.Config.resultInjectorCanvas(Core.Config.rateDescription1,250,20);		
+			Core.Config.resultInjectorCanvas(Core.Config.rateDescription2,270,20);		
+			Core.Config.resultInjectorCanvas(Core.Config.rateDescription3,290,20);		
 		},
 
 		resultInjectorCanvas : function (text,ypos,fontSize) { 
@@ -309,20 +346,14 @@ function checkAgain() {
 		getRateAnswer : function () { 
 		
 			var keyValue = Math.round(Core.Config.rate/10);
-
-		//	console.log(Core.Config.answersManager("rate",keyValue).title);
-		//	console.log(Core.Config.answersManager("rate",keyValue).description);
 			Core.Config.rateTitle =  Core.Config.answersManager("rate",keyValue).title;
 			Core.Config.rateDescription1 = Core.Config.answersManager("rate",keyValue).description1;
 			Core.Config.rateDescription2 = Core.Config.answersManager("rate",keyValue).description2;
 			Core.Config.rateDescription3 = Core.Config.answersManager("rate",keyValue).description3;
 
-
 			Core.Config.resultInjector();
 		
 		},
-
-
 
 		getAgeAnswer : function () { 
 
@@ -341,7 +372,7 @@ function checkAgain() {
 					if (keyValue > 9 ) { 
 						keyValue = 9;
 					} 
-					console.log("key value",keyValue);
+					//console.log("key value",keyValue);
 	
 					answerAge = Core.Config.answersManager("age",keyValue);
 
@@ -370,7 +401,7 @@ function checkAgain() {
 					if (keyValue > 9 ) { 
 						keyValue = 9;
 					} 
-					console.log("key value",keyValue);
+					//console.log("key value",keyValue);
 	
 					answerVirginity = Core.Config.answersManager("virginity",keyValue);
 
@@ -454,21 +485,7 @@ function checkAgain() {
 			Core.Config.TWshare.addEventListener("click",postCanvasToFacebook);
 
 		},
-
-
 	}
-	// Example module
-	/*
-	Core.MyExampleModule = {
-		init : function () {
-			Core.MyExampleModule.setupEvents();
-		},
-
-		setupEvents : function () {
-			//do some more stuff in here
-		}
-	};
-	*/
 
 })(window.Core = window.Core || {}, jQuery);
 

@@ -332,9 +332,6 @@ h4, .h4, .delta {
 h6, .h6, .zeta {
   text-transform: uppercase; }
 
-* + h1, * + .h1, * + .alpha, * + h2, * + .h2, * + .beta, * + h3, * + .h3, * + .gamma, * + h4, * + .h4, * + .delta {
-  margin-top: 28px; }
-
 small {
   font-size: 80%; }
 
@@ -1768,54 +1765,72 @@ body {
  * Views
  * =================================
  */
+html, body {
+  max-width: 100%;
+  overflow-x: hidden; }
+
 .logo {
-  display: inline-block; }
+  display: inline-block;
+  padding-top: 30px; }
 
 form {
   text-align: center; }
 
 .main-title {
-  display: block;
+  display: inline-block;
   font-size: 2em;
+  -webkit-transform: none;
+     -moz-transform: none;
+      -ms-transform: none;
+          transform: none;
   margin-bottom: 50px; }
-  @media screen and (min-width: 48em) {
-    .main-title {
-      display: inline-block;
-      margin-bottom: 50px; } }
 
 .header-container {
   text-align: center;
-  background: -webkit-linear-gradient(top, #07a089 0%, #07a089 60%, #07a089 60%, #312a11 60%, #312a11 70%, #980017 70%, #980017 80%, #f2542a 80%, #f2542a 90%, #c2d14a 90%, #c2d14a 100%);
-  background: -moz-linear-gradient(top, #07a089 0%, #07a089 60%, #07a089 60%, #312a11 60%, #312a11 70%, #980017 70%, #980017 80%, #f2542a 80%, #f2542a 90%, #c2d14a 90%, #c2d14a 100%);
-  background: linear-gradient(top, #07a089 0%, #07a089 60%, #07a089 60%, #312a11 60%, #312a11 70%, #980017 70%, #980017 80%, #f2542a 80%, #f2542a 90%, #c2d14a 90%, #c2d14a 100%);
-  width: 100%; }
+  width: 100%;
+  position: relative; }
+
+.gradient-bg {
+  background: -webkit-linear-gradient(top, #312a11 0%, #312a11 25%, #980017 25%, #980017 50%, #f2542a 50%, #f2542a 75%, #c2d14a 75%, #c2d14a 100%);
+  background: -moz-linear-gradient(top, #312a11 0%, #312a11 25%, #980017 25%, #980017 50%, #f2542a 50%, #f2542a 75%, #c2d14a 75%, #c2d14a 100%);
+  background: linear-gradient(top, #312a11 0%, #312a11 25%, #980017 25%, #980017 50%, #f2542a 50%, #f2542a 75%, #c2d14a 75%, #c2d14a 100%);
+  width: 150%;
+  height: 60px;
+  -webkit-transform: rotate(-20deg) translateX(-10%);
+     -moz-transform: rotate(-20deg) translateX(-10%);
+      -ms-transform: rotate(-20deg) translateX(-10%);
+          transform: rotate(-20deg) translateX(-10%);
+  outline: 1px solid transparent;
+  -webkit-backface-visibility: hidden;
+  margin-bottom: 120px; }
 
 .column-big {
   width: 100%; }
 
-.column-sidebar {
-  display: inline-block;
-  float: right;
-  max-width: 29%; }
+.flavour {
+  margin-top: 5px !important;
+  margin-bottom: 5px !important;
+  height: 1.25rem;
+  color: #c2d14a !important; }
 
 .round-bubble {
   background-color: #c2d14a;
   height: 50px;
-  width: 30%;
+  width: 50%;
   border: none;
   border-radius: 25px;
   display: inline-block;
   color: #312a11;
   font-size: 2em;
   text-align: center;
-  font-family: 'OstrichSansRounded-Medium';
-  margin-left: 8%; }
+  min-width: 30px;
+  font-family: 'OstrichSansRounded-Medium'; }
 
 .round-bubble-button {
   border: none;
   background-color: #c2d14a;
   height: 90px;
-  width: 430px;
+  width: 80%;
   text-align: center;
   border-radius: 25px;
   font-size: 2.5em;
@@ -1825,17 +1840,26 @@ form {
       -ms-user-select: none;
           user-select: none;
   font-family: 'OstrichSansRounded-Medium';
-  margin: 0 auto; }
+  margin-top: 20px;
+  margin-bottom: 30px; }
+  @media screen and (min-width: 48em) {
+    .round-bubble-button {
+      display: inline-block; } }
 
 .small-button {
   width: auto;
-  font-size: 1.5em;
-  height: 70px;
-  margin: 0 5px;
-  padding: 0 10px; }
+  max-width: 48%;
+  font-size: 1.3em;
+  height: 60px;
+  padding: 0 20px; }
 
 .basic-text {
-  display: inline-block; }
+  display: block;
+  margin-top: 30px;
+  width: 100%; }
+  @media screen and (min-width: 48em) {
+    .basic-text {
+      display: inline-block; } }
 
 #canvas {
   text-align: center;
@@ -1845,14 +1869,15 @@ form {
   background-color: #c2d14a; }
 
 .resultsDisplay {
-  padding: 20px;
   text-align: center; }
 
 .share-btn-container {
-  margin: 0 auto;
-  text-align: center; }
+  margin: 10px auto;
+  text-align: center;
+  width: 100%; }
 
 #roadBlock {
+  z-index: 1;
   display: none;
   position: fixed;
   width: 100%;
@@ -1877,6 +1902,20 @@ form {
 
 .roadBlock-text {
   color: #f2542a; }
+
+.banner-holder-mobile {
+  text-align: center;
+  display: block; }
+  @media screen and (min-width: 48em) {
+    .banner-holder-mobile {
+      display: none; } }
+
+.banner-holder-leaderboard .ad-wrapper .adsbygoogle {
+  display: none;
+  text-align: center; }
+  @media screen and (min-width: 48em) {
+    .banner-holder-leaderboard .ad-wrapper .adsbygoogle {
+      display: block; } }
 
 /**
  * Helper/utility classes
