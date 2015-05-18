@@ -62,7 +62,7 @@ form {
 	
 	@include respond-min($bp-mid) {
 		transform: rotate(-10deg) translateX(-10%);
-		margin-bottom:70px;
+		margin-bottom:120px;
 	}
 	@include respond-min($bp-wide) {
 		transform: rotate(-5deg) translateX(-10%);
@@ -231,23 +231,19 @@ form {
 	text-align : center;
 	display : block;
 	
-	@include respond-min($bp-mid) {
+	@include respond-min(728px) {
 		display: none;
 	}
-	@include respond-min($bp-wide) {
-	
-	}
+
 }
 
-.banner-holder-leaderboard .ad-wrapper  .adsbygoogle{ 
+.banner-holder-leaderboard { 
 
 	display : none;
 	text-align : center;
 	
-	@include respond-min($bp-mid) {
+	@include respond-min(728px) {
 		display: block;
 	}
-	@include respond-min($bp-wide) {
-	
-	}
+
 }

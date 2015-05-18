@@ -1737,7 +1737,7 @@ form {
      -moz-transform: rotate(-10deg) translateX(-10%);
       -ms-transform: rotate(-10deg) translateX(-10%);
           transform: rotate(-10deg) translateX(-10%);
-  margin-bottom: 70px;
+  margin-bottom: 120px;
   -webkit-transform: rotate(-5deg) translateX(-10%);
      -moz-transform: rotate(-5deg) translateX(-10%);
       -ms-transform: rotate(-5deg) translateX(-10%);
@@ -1849,7 +1849,7 @@ form {
   display: block;
   display: none; }
 
-.banner-holder-leaderboard .ad-wrapper .adsbygoogle {
+.banner-holder-leaderboard {
   display: none;
   text-align: center;
   display: block; }
