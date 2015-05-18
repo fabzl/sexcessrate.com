@@ -295,9 +295,13 @@ function checkAgain() {
 			// 50 points based on your success getting laid.
 
 
-			rateSuccess = (Math.round(Core.Config.activeYears/Core.Config.partners));
+			rateSuccess = (Math.round((Core.Config.partners/Core.Config.activeYears)*10));
+
 			if(rateSuccess >= 50 ) { 
 				rateSuccess  = 50;
+			}
+			if(rateSucess <= 0 ) { 
+				rateSucess = 0;
 			}
 
 			Core.Config.rate  = rateVirginity + rateActivity +ratePartners + rateSuccess;
