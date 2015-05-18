@@ -25,32 +25,34 @@
 
 		<header class="masthead" role="banner">
 			<image class="logo" src="/img/logo.png"></image>
-			<h1 class="main-title">WHAT IS YOUR SEXCESS RATE ?</h1>
+			<h1 class="main-title">Putting a number on your powers of seduction
+			</h1>
 		</header>
 
 		<div id="mainContent" class="l-container" role="main">
 
 			<div class="g-col column-big">	
 					<form>
-						<h2 class="basic-text">HOW OLD ARE YOU ?</h2>
+						<h2 class="basic-text">How old are you?</h2>
 						
-						<input  maxlength="2" class="round-bubble age" type="text" name="age">
+						<input type="number"  min="1" max="99" maxlength="2" class="round-bubble age" type="text" name="age">
 						</input>
-						<div class="flavourText flavour-age">
-							<h3 class="basic-text flavour"></h3>
+						<div class="flavourText">
+							<h3 class="flavour-age basic-text flavour"></h3>
 						</div>
-						<h2 class="basic-text">WHEN WAS YOUR FIRST TIME ?</h2>
+						<h2 class="basic-text">At what age did you lose your virginity?
+						</h2>
 						
-						<input class="round-bubble virginity" type="text" name="first-time" maxlength="2" value="">
+						<input type="number" min="1" max="99" class="round-bubble virginity" type="text" name="first-time" maxlength="2" value="">
 						
-						<div class="flavourText flavour-virginity">
-							<h3 class="basic-text flavour"></h3>
+						<div class="flavourText">
+							<h3 class="basic-text flavour flavour-virginity"></h3>
 						</div>
-						<h2 class="basic-text">ROUGHLY, HOW MANY PEOPLE YOU HAVE SEX ?</h2>
-						<input class="round-bubble people" type="text" maxlength="4" name="people" value="">
+						<h2 class="basic-text">How many notches on your bedpost?</h2>
+						<input type="number" min="0" max="999" class="round-bubble partners" type="text" maxlength="3" name="partners" value="">
 						
-						<div class="flavourText flavour-people">
-							<h3 class="basic-text flavour"></h3>
+						<div class="flavourText">
+							<h3 class="basic-text flavour flavour-partners"></h3>
 						</div>
 						<br>
 						<button class="round-bubble-button" type="calculate" value="calculate">CALCULATE</button>

@@ -1734,7 +1734,7 @@ body {
   border: none;
   background-color: #c2d14a;
   height: 90px;
-  width: 100%;
+  width: 430px;
   text-align: center;
   border-radius: 25px;
   font-size: 2.5em;
@@ -1743,7 +1743,8 @@ body {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
-  font-family: 'OstrichSansRounded-Medium'; }
+  font-family: 'OstrichSansRounded-Medium';
+  margin: 0 auto; }
 
 .small-button {
   width: auto;

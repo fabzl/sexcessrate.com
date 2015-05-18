@@ -1,0 +1,113 @@
+{
+	"answers": {
+
+		"rateAnswers": 
+			{
+			"0":{
+				"title" : "Fugly", 
+				"description1":  "You must have some sort of physical deformity.",
+				"description2":  "Good luck. It’ll probably never get better.",
+				"description3":  ""
+			},
+			"1": {
+				"title" : "Virgin", 
+				"description1": "Once you pop,you won’t stop",
+				"description2": "",
+				"description3": ""
+			},
+			"2":{
+				"title" : "Born-again Christian",
+				"description1": "I hope you have some religious reasons",
+				"description2": "for how little action you’ve got.",
+				"description3": "There’s no excuse."
+			},
+			"3":{
+				"title" : "Prude", 
+				"description1": "It’s okay to be shy. ",
+				"description2": "Especially if you know you look horrific naked.",
+				"description3": "Stay shy."
+				 }
+			,	
+			"4":{
+				"title" : "Try harder ",
+				"description1": "But remember.",
+				"description2":  "No means no.",
+				"description3":  ""	 
+			},
+			"5":{
+				"title" : "Repeat offender ",
+				"description1": "Either they keep coming back for more or you’re seriously lazy.",
+				"description2":  "",
+				"description3":  ""	 
+			 },
+			"6":{
+				"title" : "Puny Penis",
+				"description1": "They laugh you out of the bedroom before you get a chance,",
+				"description2":  "don’t they?",
+				"description3":  ""	 
+			},
+			"7":{
+				"title" : "Puny Penis" ,
+				"description1": "They laugh you out of the bedroom before you get a chance,",
+				"description2":  "don’t they?",
+				"description3":  ""	 
+			},
+			"8":{
+				"title" : "Rampant rider ",
+				"description1": "Now that’s some stamina. ",
+				"description2":  "I bet you have callouses.",
+				"description3":  ""	
+			},
+			"9":{
+				"title" : "One night wonder",
+				"description1": "Commitment phobias?",
+				"description2": "How many people are you trying to conquer?",
+				"description3": "You should start putting flags in them."
+			}
+		 },
+		"flavourAnswersAge" : 
+			{
+			"0":"Does your mom know you are on here?",
+			"1":"a refreshing young spirit.",
+			"2":"life is a rollercoaster",
+			"3":"Thirty is a nice age, especially if you are to be forty.",
+			"4":"Mid way sign for you",
+			"5":"Are you taking hormons?",
+			"6":"How come you are alive.",
+			"7":"How come you are alive.",
+			"8":"How come you are alive.",
+			"9":"How come you are alive."
+
+			},
+
+		"flavourAnswersVirginity" : 
+			{
+				"0":"That must be traumatic",
+				"1":"a virgin suicide",
+				"2":"just when the flowers blossom",
+				"3":"you take it slow",
+				"4":"you wait for the right one",
+				"5":"did you put a price tag on it",
+				"6":"did you put a price tag on it",
+				"7":"did you put a price tag on it",
+				"8":"did you put a price tag on it",
+				"9":"did you put a price tag on it"
+			},
+
+		"flavourAnswersPersons" : 
+			{
+				"0":"monogamy means a lot to you",
+				"1":"you are not quite a million bucks",
+				"2":"show them some moves",
+				"3":"good effort",
+				"4":"good effort",
+				"5":"good effort",
+				"6":"good effort",
+				"7":"brave warrior",
+				"8":"Don Juan is your new name",
+				"9":"You slut"
+
+			}
+
+	}
+}

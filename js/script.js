@@ -4,6 +4,56 @@
 
 // Create a closure to maintain scope of the '$' and Core
 
+// to add index property to answers
+Object.prototype.__index=function(index) {
+	var i=-1;
+	for (var key in this) {
+  		if (this.hasOwnProperty(key) && typeof(this[key])!=='function') {
+      	++i;
+     	}
+
+   	if (i>=index)
+      {
+      	return this[key];
+      }
+  	}
+	return null;
+}
+
+
+// to add line breaks to canvas
+
+CanvasRenderingContext2D.prototype.wrapText = function (text, x, y, maxWidth, lineHeight) {
+
+    var lines = text.split("\n");
+
+    for (var i = 0; i < lines.length; i++) {
+
+        var words = lines[i].split(' ');
+        var line = '';
+
+        for (var n = 0; n < words.length; n++) {
+            var testLine = line + words[n] + ' ';
+            var metrics = this.measureText(testLine);
+            var testWidth = metrics.width;
+            if (testWidth > maxWidth && n > 0) {
+                this.fillText(line, x, y);
+                line = words[n] + ' ';
+                y += lineHeight;
+            }
+            else {
+                line = testLine;
+            }
+        }
+
+        this.fillText(line, x, y);
+        y += lineHeight;
+    }
+}
+
+
+
+
 ;(function(Core, $) {
 	$(function() {
 		// Any globals go here in CAPS (but avoid if possible)
@@ -14,17 +64,18 @@
 	});// END DOC READY
 
 	Core.Config = {
+
+		answers:{},
 		age : 0,
 		virginity : 0,
 		partners : 0,
-		activeyears : 0,
+		activeYears : 0,
+		activeMonths : 0,
 		rate : 0,
-		answers : [],
-		ageRangeMin: 1,
-		ageRangeMax: 117,
-		partnersRangeMin:0,
-		partnersRange:666,
-		
+		rateTitle: "",
+		rateDescription1: "",
+		rateDescription2: "",
+		rateDescription3: "",
 
 		textAge : document.querySelector(".age"),
 		textVirginity : document.querySelector(".virginity"),
@@ -33,7 +84,7 @@
 
 		textFlavourAge : document.querySelector(".flavour-age"),
 		textFlavourVirginity : document.querySelector(".flavour-virginity"),
-		textFlavourPaople : document.querySelector(".flavour-people"),
+		textFlavourPartners : document.querySelector(".flavour-partners"),
 		
 		calculateRateBtn : document.querySelector(".round-bubble-button"),
 		FBshare : document.querySelector(".fb-share"),
@@ -41,125 +92,329 @@
 
 		canvasObject : document.getElementById("canvas"),
 
-
-
-
-
 		init : function () {
 
 			console.debug('Sexcess rate');
+			Core.Config.loadAnswers();
+		},
+
+		loadAnswers  : function (rate) {
+
+
+			var url = "../data/answers.json"
+		
+			$.getJSON(url, function (json) {
+	    		//	console.log(json);
+	 			Core.Config.answers = json.answers;
+	 			Core.Config.activateButtons();
+
+			});
+		},
+
+		activateButtons : function () {
+
+			Core.Config.listenForChanges(".age",Core.Config.getAgeAnswer);
+			Core.Config.listenForChanges(".virginity",Core.Config.getVirginityAnswer);	
+			Core.Config.listenForChanges(".partners",Core.Config.getPartnersAnswer);
 			Core.Config.calculateRateBtn.addEventListener("click",Core.Config.outputResult);
 		},
 
 		outputResult : function (event) {
 
 			event.preventDefault();
-			console.log("outputResult")
-			Core.Config.formHarvest();
 			
-			console.log("values : ",Core.Config.age,Core.Config.virginity,Core.Config.partners);
-			
-			Core.Config.activeyears = Core.Config.age - Core.Config.virginity;
+			var validData  = 0;
 
-			Core.Config.rate  = Core.Config.activeyears / Core.Config.partners*100;
+			Core.Config.age = Number(Core.Config.textAge.value.toString());
+			Core.Config.virginity = Number(Core.Config.textVirginity.value.toString());
+			Core.Config.partners = Number(Core.Config.textPartners.value.toString());	
 
-			console.log("your rate is : ", Core.Config.rate );	
+			if ($.isNumeric( Core.Config.age) ) { 
 
-			Core.Config.resultInjector();		
+				validData ++;
+
+			}else{
+				Core.Config.textFlavourAge.innerHTML = " not valid, come on ! write your age";
+			}
+
+			if ($.isNumeric( Core.Config.virginity) ) { 
+				validData ++;
+			}else{
+				Core.Config.textFlavourVirginity.innerHTML = "not valid, are you still a virgin ?";
+			}
+
+
+			if ($.isNumeric( Core.Config.partners) ) { 
+				validData ++;
+			}else{	
+				Core.Config.textFlavourPartners.innerHTML = "Not valid, it might be though to remember.";
+			}
+
+
+			if(validData === 3 ) {
+
+				if ( Core.Config.virginity <= Core.Config.age ) { 
+
+					Core.Config.calculateRate();
+
+				}else{
+					Core.Config.textFlavourAge.innerHTML = "not valid, you little liar !";
+					Core.Config.textFlavourVirginity.innerHTML = "not valid, future plans don't count.";
+				}
+			}
 		},
 
-		formHarvest : function () { 
+		calculateRate : function () {
 
-			console.log('formHarvest');
-			Core.Config.age = Core.Config.textAge.value.toString();
-			Core.Config.virginity = Core.Config.textVirginity.value.toString();
-			Core.Config.partners = Core.Config.textVirginity.value.toString();	
+			var rateVirginity;
+			var rateActivity;
+			var ratePartners;
+			var rateSucess;
+
+			Core.Config.activeYears = Core.Config.age - Core.Config.virginity;
+//			Core.Config.activeMonths = Core.Config.activeYears*12;
+		
+			// we set the partners range to a maximun of 100
+			if(	Core.Config.partners >= 100 ) {
+				Core.Config.partners = 100;
+			};
+
+			if(	Core.Config.partners <= 0 ) {
+				Core.Config.partners = 1;
+			};
+ 			// 20 points will be assigned for when you lose your virginity.
+			rateVirginity = 21 - Core.Config.virginity;
 			
-			if(Core.Config.isNumber(Core.Config.age)!="null") {
-				console.log("nice and valid age!")
-				Core.Config.emptyInvalidTexfield(Core.Config.age);
-				
-				if(Core.Config.age=='') {
-					console.log("empty");
-					Core.Config.textFlavourAge.value = "enter a number";
+			if(rateVirginity < 0 ) { 
 
-				}
+				rateVirginity = 0;
+			};
+			if (rateVirginity > 20) { 
 
-				//textFlavourVirginity.value = "enter a number";
-			//	textFlavourPaople.value = "enter a number";
+				rateVirginity = 20;
+			};
+
+			// 10 points will be assigned for the number of active years; 
+			rateActivity = Core.Config.activeYears;
+			
+			if(rateActivity >= 10 ) { 
+
+				rateActivity = 10;
+			};
+			if(rateActivity <= 0 ) { 
+
+				rateActivity = 0;
+			};
+			//20 points will be assigner for the rate of girls you sleep with
+			ratePartners = Math.round(Core.Config.partners*.5);
+			if(ratePartners >= 20 ) { 
+				ratePartners = 20;
+			};
+
+			if(ratePartners <= 0 ) { 
+				ratePartners = 0;
+			};
+			// 50 points based on your success getting laid.
 
 
+			rateSuccess = (Math.round(Core.Config.activeYears/Core.Config.partners));
+			if(rateSuccess >= 50 ) { 
+				rateSuccess  = 50;
+			}
 
-			}else{
-				console.log("invalid age");
-			}	
-			if(Core.Config.isNumber(Core.Config.virginity)!=null) {
-				console.log("nice and valid virginity!")
-				Core.Config.emptyInvalidTexfield(Core.Config.virginity);
+			Core.Config.rate  = rateVirginity + rateActivity +ratePartners + rateSuccess;
 
-			}else{
-				console.log("invalid virginity");
-				Core.Config.emptyInvalidTexfield(Core.Config.partners);
+			console.log("your rateVirginity is : ", rateVirginity );
+			console.log("your rateActivity is : ", rateActivity );
+			console.log("your ratePartners is : ", ratePartners );
+			console.log("your rateSuccess is : ",  rateSuccess );
+			console.log("your rate is : ", Core.Config.rate );
 
-			}	
-			if(Core.Config.isNumber(Core.Config.partners)!=null) {
-				console.log("nice and valid partners!")
-			}else{
-				console.log("invalid partners");
-				Core.Config.emptyInvalidTexfield(Core.Config.partners);
-			}	
-
-			console.log("isNUmber:",Core.Config.isNumber(Core.Config.age));
-
+			Core.Config.getRateAnswer();
 
 		},
 
 		emptyInvalidTexfield : function (elementToBlank) {
-			elementToBlank.value =null;		 
-		},
-
-		isNumber : function (v) { 
-
-			  // [0-9]* Zero or more digits between 0 and 9  (This allows .25 to be considered valid.)
-			  // ()? Matches 0 or 1 things in the parentheses.  (Allows for an optional decimal point)
-			  // Decimal point escaped with \.
-			  // If a decimal point does exist, it must be followed by 1 or more digits [0-9]
-			  // \d and [0-9] are equivalent 
-			  // ^ and $ anchor the endpoints so tthe whole string must match.
-			  return v.trim().length > 0 && v.trim().match(/^[0-9]*(\.[0-9]+)?$/);
+			elementToBlank.value = null;		 
 		},
 
 		resultInjector : function () { 
 
-	      
-	    
-	      //  Core.Config.textResult.appendChild(document.createTextNode(Core.Config.rate));
-	      	Core.Config.resultInjectorCanvas(Core.Config.rate);
+			Core.Config.canvasEraser();
+			Core.Config.resultInjectorCanvas(Core.Config.rateTitle,70,30);
+			Core.Config.resultInjectorCanvas(Core.Config.rate+"%",155,70);
+			Core.Config.resultInjectorCanvas(Core.Config.rateDescription1,200,20);		
+			Core.Config.resultInjectorCanvas(Core.Config.rateDescription2,220,20);		
+			Core.Config.resultInjectorCanvas(Core.Config.rateDescription3,240,20);		
 		},
 
-		resultInjectorCanvas : function (text) { 
+		resultInjectorCanvas : function (text,ypos,fontSize) { 
 
 			var context = Core.Config.canvasObject.getContext("2d");
+  			var xpos = Core.Config.canvasObject.width / 2;
+      	//	var ypos = Core.Config.canvasObject.height / 2;
   			context.fillStyle = "#312a11";
-  			context.font = "bold 90px OstrichSansRounded-Medium";
-  			context.fillText(text, 165, 155);
+  			context.font = "bold "+fontSize+"px OstrichSansRounded-Medium";
+  			context.textAlign = 'center';
+  			context.fillText(text, xpos, ypos);
 
+		},
+		canvasEraser : function () { 
+			var context = Core.Config.canvasObject.getContext("2d");
+			context.clearRect(0, 0, Core.Config.canvasObject.width, Core.Config.canvasObject.height);
+		},
+
+		getRateAnswer : function () { 
+		
+			var keyValue = Math.round(Core.Config.rate/10);
+
+		//	console.log(Core.Config.answersManager("rate",keyValue).title);
+		//	console.log(Core.Config.answersManager("rate",keyValue).description);
+			Core.Config.rateTitle =  Core.Config.answersManager("rate",keyValue).title;
+			Core.Config.rateDescription1 = Core.Config.answersManager("rate",keyValue).description1;
+			Core.Config.rateDescription2 = Core.Config.answersManager("rate",keyValue).description2;
+			Core.Config.rateDescription3 = Core.Config.answersManager("rate",keyValue).description3;
+
+
+			Core.Config.resultInjector();
+		
+		},
+
+
+
+		getAgeAnswer : function () { 
+
+
+			var answerAge;
+			var keyValue;
+			Core.Config.age = Core.Config.textAge.value.toString();
+
+			if(Core.Config.age!='') {
+						
+					if (Core.Config.age > 99 ) { 
+						Core.Config.textAge.value = 99;	
+					}
+
+					keyValue  = Math.round(Core.Config.age/10);
+					if (keyValue > 9 ) { 
+						keyValue = 9;
+					} 
+					console.log("key value",keyValue);
+	
+					answerAge = Core.Config.answersManager("age",keyValue);
+
+				} else { 
+
+					answerAge = "";
+				}
+
+				Core.Config.textFlavourAge.innerHTML = answerAge;
+		},
+
+		getVirginityAnswer : function () { 
+
+			var answerVirginity;
+			var keyValue;
+			
+			Core.Config.virginity = Core.Config.textVirginity.value.toString();
+
+			if(Core.Config.virginity!='') {
+						
+					if (Core.Config.virginity > 99 ) { 
+						Core.Config.textVirginity.value = 99;	
+					}
+
+					keyValue  = Math.round(Core.Config.virginity/10);
+					if (keyValue > 9 ) { 
+						keyValue = 9;
+					} 
+					console.log("key value",keyValue);
+	
+					answerVirginity = Core.Config.answersManager("virginity",keyValue);
+
+				} else { 
+
+					answerVirginity = "";
+				}
+
+				Core.Config.textFlavourVirginity.innerHTML = answerVirginity;
+		},
+
+		getPartnersAnswer : function () { 
+
+			
+			var answerPartners;
+			var keyValue;
+			
+			Core.Config.Partners = Core.Config.textPartners.value.toString();
+
+			if(Core.Config.Partners!='') {
+						
+					if (Core.Config.Partners > 999 ) { 
+						Core.Config.textPartners.value = 999;	
+					}
+					if (Core.Config.Partners < 99 ) { 
+						
+						keyValue  = Math.floor(Core.Config.Partners/10);
+
+					}else {
+						keyValue  = 9;
+					}
+					if (keyValue > 9 ) { 
+						keyValue = 9;
+					} 
+
+					answerPartners = Core.Config.answersManager("partners",keyValue);
+
+				} else { 
+
+
+					answerPartners = "";
+				}
+
+				Core.Config.textFlavourPartners.innerHTML = answerPartners;
+		},
+
+
+		answersManager : function (question,value) {
+
+			var answer ; 
+			switch(question) {
+	 		   case "rate":
+		    		answer = Core.Config.answers.rateAnswers.__index(value);
+	      		break;
+	    		case "age":
+			    	answer = Core.Config.answers.flavourAnswersAge.__index(value).toString();
+	        	break;
+	        	case "virginity":
+	    			answer = Core.Config.answers.flavourAnswersVirginity.__index(value).toString();
+	        	break;
+	        	case "partners":
+	        		answer = Core.Config.answers.flavourAnswersPersons.__index(value).toString();
+	        	break;
+	   			
+				}
+			//	console.log("answer :", answer);
+			return answer;
+				
+			},
+
+		listenForChanges : function (object,func) { 
+		
+			$(object).on("change keyup paste click",func);
+
+		},
+
+		activateShareOnCanvasBtns : function () { 
+
+			Core.Config.TWshare.addEventListener("click",postToTwitter);
+
+			Core.Config.TWshare.addEventListener("click",postCanvasToFacebook);
 
 		},
 
 
-	activateShareOnCanvasBtns : function () { 
-
-		Core.Config.TWshare.addEventListener("click",postToTwitter);
-
-		Core.Config.TWshare.addEventListener("click",postCanvasToFacebook);
-		
-
 	}
-
-
-	};
-
 	// Example module
 	/*
 	Core.MyExampleModule = {
@@ -174,7 +429,6 @@
 	*/
 
 })(window.Core = window.Core || {}, jQuery);
-
 
 
 
