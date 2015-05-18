@@ -41,19 +41,15 @@ form {
 //	padding-top:5%; 
 	margin-bottom: 50px;
 
-	@include respond-min($bp-mid) {
 
-//		display : inline-block;
-//		transform:	translateY(-170px);
-	}
-	@include respond-min($bp-narrow) {
-	
-	}
-	@include respond-min($bp-mid) {
-	
+	@include respond-min(829px) {
+		transform:	translateY(-70px);
+		font-size: 1.8em;
 	}
 	@include respond-min($bp-wide) {
-	
+		transform:	translateY(-70px);
+		padding-rigth:50px;	
+		font-size: 2.2em;
 	}
 
 
@@ -84,6 +80,14 @@ form {
 	outline: 1px solid transparent;
 	-webkit-backface-visibility: hidden;
 	margin-bottom:120px;
+	
+	@include respond-min($bp-mid) {
+		transform: rotate(-10deg) translateX(-10%);
+	}
+	@include respond-min($bp-wide) {
+		transform: rotate(0deg) translateX(-10%);
+	}
+
 }
 
 .column-big { 

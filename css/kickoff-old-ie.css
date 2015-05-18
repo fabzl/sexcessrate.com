@@ -1702,7 +1702,18 @@ form {
      -moz-transform: none;
       -ms-transform: none;
           transform: none;
-  margin-bottom: 50px; }
+  margin-bottom: 50px;
+  -webkit-transform: translateY(-70px);
+     -moz-transform: translateY(-70px);
+      -ms-transform: translateY(-70px);
+          transform: translateY(-70px);
+  font-size: 1.8em;
+  -webkit-transform: translateY(-70px);
+     -moz-transform: translateY(-70px);
+      -ms-transform: translateY(-70px);
+          transform: translateY(-70px);
+  padding-rigth: 50px;
+  font-size: 2.2em; }
 
 .header-container {
   text-align: center;
@@ -1721,7 +1732,15 @@ form {
           transform: rotate(-20deg) translateX(-10%);
   outline: 1px solid transparent;
   -webkit-backface-visibility: hidden;
-  margin-bottom: 120px; }
+  margin-bottom: 120px;
+  -webkit-transform: rotate(-10deg) translateX(-10%);
+     -moz-transform: rotate(-10deg) translateX(-10%);
+      -ms-transform: rotate(-10deg) translateX(-10%);
+          transform: rotate(-10deg) translateX(-10%);
+  -webkit-transform: rotate(0deg) translateX(-10%);
+     -moz-transform: rotate(0deg) translateX(-10%);
+      -ms-transform: rotate(0deg) translateX(-10%);
+          transform: rotate(0deg) translateX(-10%); }
 
 .column-big {
   width: 100%; }
