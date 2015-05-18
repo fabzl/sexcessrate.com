@@ -21,7 +21,7 @@ form {
 	font-size: 2em;
 	margin-bottom: 50px;
 
-	@include respond-min($breakpoint-mid) {
+	@include respond-min($bp-mid) {
 
 		display : inline-block;
 		margin-bottom: 50px;
@@ -29,6 +29,10 @@ form {
 	}
 }
 
+//$bp-narrow            : 400;  // Set in px
+//$bp-mid               : 768;  // Set in px
+//$bp-wide              : 992;  // Set in px
+//$bp-huge              : 1600; // Set in px
 
 .header-container {
 

@@ -1694,12 +1694,11 @@ form {
   text-align: center; }
 
 .main-title {
-  display: inline-block;
+  display: block;
   font-size: 2em;
-  -webkit-transform: translateY(-50%);
-     -moz-transform: translateY(-50%);
-      -ms-transform: translateY(-50%);
-          transform: translateY(-50%); }
+  margin-bottom: 50px;
+  display: inline-block;
+  margin-bottom: 50px; }
 
 .header-container {
   text-align: center;
