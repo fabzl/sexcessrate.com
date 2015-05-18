@@ -30,7 +30,7 @@ module.exports = function (grunt) {
 					// if you would like some basic JS shims (when not using jQuery),
 					// uncomment the line below to compile Shimly output
 					//'js/helpers/shims.js',
-
+					'js/libs/fuckadblock.js',
 					'js/helpers/console.js',
 					'bower_modules/trak/dist/trak.js',
 					'bower_modules/swiftclick/js/libs/swiftclick.js',

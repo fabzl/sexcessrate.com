@@ -2,7 +2,8 @@
 	Fabz&co Fabz - Fabian Andrade.. fabz.tv
 */
 
-// Create a closure to maintain scope of the '$' and Core
+
+////////////////////PROTOTYPES
 
 // to add index property to answers
 Object.prototype.__index=function(index) {
@@ -52,7 +53,43 @@ CanvasRenderingContext2D.prototype.wrapText = function (text, x, y, maxWidth, li
 }
 
 
+///////////////////////////////////////////// ad block detection 
 
+function adBlockDetected() {
+
+		console.log("adBlockDetected");
+		Core.Config.adBlockRoadBlock();	
+		Core.Config.roadBlock.classList.toggle("active");
+	}
+function adBlockNotDetected() {
+		console.log("adBlock NOT Detected");
+	}
+	
+	if(typeof fuckAdBlock === 'undefined') {
+		adBlockDetected();
+	} else {
+		fuckAdBlock.onDetected(adBlockDetected).onNotDetected(adBlockNotDetected);
+	}
+	
+function checkAgain() {
+		document.getElementById('adb-enabled').style.display = 'none';
+		document.getElementById('adb-not-enabled').style.display = 'none';
+		// setTimeout 300ms for the recheck is visible when you click on the button
+		setTimeout(function() {
+			if(typeof fuckAdBlock === 'undefined') {
+				adBlockDetected();
+			} else {
+				fuckAdBlock.onDetected(adBlockDetected).onNotDetected(adBlockNotDetected);
+				fuckAdBlock.check();
+			}
+		}, 300);
+	}
+
+
+
+
+
+////////////////////////// THE CORE 
 
 ;(function(Core, $) {
 	$(function() {
@@ -92,6 +129,12 @@ CanvasRenderingContext2D.prototype.wrapText = function (text, x, y, maxWidth, li
 
 		canvasObject : document.getElementById("canvas"),
 
+		roadBlock : document.getElementById("roadBlock"),
+
+		adBlockRoadBlock : function () { 
+
+		},
+
 		init : function () {
 
 			console.debug('Sexcess rate');
@@ -99,7 +142,6 @@ CanvasRenderingContext2D.prototype.wrapText = function (text, x, y, maxWidth, li
 		},
 
 		loadAnswers  : function (rate) {
-
 
 			var url = "../data/answers.json"
 		

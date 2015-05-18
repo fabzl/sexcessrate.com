@@ -38,7 +38,6 @@
 
 .g-col {
 	@if $grid-column-padding > 0 {
-		padding: paddingCalc();
 	}
 
 	@include respond-min($bp-single-col) {
