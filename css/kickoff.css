@@ -1851,7 +1851,11 @@ form {
   font-size: 2em;
   text-align: center;
   min-width: 30px;
-  font-family: 'OstrichSansRounded-Medium'; }
+  font-family: 'OstrichSansRounded-Medium';
+  max-width: 200px; }
+  @media screen and (min-width: 62em) {
+    .round-bubble {
+      width: 30%; } }
 
 .round-bubble-button {
   border: none;
@@ -1868,10 +1872,11 @@ form {
           user-select: none;
   font-family: 'OstrichSansRounded-Medium';
   margin-top: 20px;
-  margin-bottom: 30px; }
-  @media screen and (min-width: 48em) {
+  margin-bottom: 30px;
+  max-width: 320px; }
+  @media screen and (min-width: 25em) {
     .round-bubble-button {
-      display: inline-block; } }
+      width: 50%; } }
 
 .small-button {
   width: auto;
@@ -1886,7 +1891,11 @@ form {
   width: 100%; }
   @media screen and (min-width: 48em) {
     .basic-text {
-      display: inline-block; } }
+      display: inline-block;
+      margin-top: 20px; } }
+  @media screen and (min-width: 62em) {
+    .basic-text {
+      margin-top: 10px; } }
 
 #canvas {
   text-align: center;

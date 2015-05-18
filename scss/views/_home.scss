@@ -8,28 +8,14 @@ html, body {
 
 .logo { 
 
-//	padding-left:10%; 
 	display : inline-block;
 	padding-top:30px;
 
-	//float: left;
-//	max-width:50%;
-
-	@include respond-min($bp-narrow) {
-	
-	}
-	@include respond-min($bp-mid) {
-	
-	}
-	@include respond-min($bp-wide) {
-	
-	}
 }
 
 form { 
 
 	text-align:center;
-	//margin-top:100px;
 }
 
 .main-title {
@@ -37,8 +23,6 @@ form {
 	display : inline-block;
 	font-size: 2em;
 	transform:	none;
-	//padding-rigth:10%;
-//	padding-top:5%; 
 	margin-bottom: 50px;
 
 
@@ -52,9 +36,6 @@ form {
 		font-size: 2.2em;
 	}
 
-
-
-
 }
 
 //$bp-narrow            : 400;  // Set in px
@@ -67,8 +48,6 @@ form {
 	text-align:center;
 	width: 100%;
 	position:relative;
-	
-
 }
 
 .gradient-bg { 
@@ -119,7 +98,14 @@ form {
 	min-width: 30px;
 	font-family:'OstrichSansRounded-Medium';
 	//margin-left: 8%;
+	max-width: 200px;
+
+	@include respond-min($bp-wide) {
+
+		width: 30%;
+	}
 	
+
 }
 
 .round-bubble-button {
@@ -136,15 +122,13 @@ form {
 	font-family:'OstrichSansRounded-Medium';
 	margin-top:20px;
 	margin-bottom:30px;
+	max-width: 320px;
 
 
-	@include respond-min($bp-mid) {
-		display: inline-block;
-	}
-	@include respond-min($bp-wide) {
+	@include respond-min($bp-narrow) {
 	
+		width: 50%;
 	}
-
 
 
 }
@@ -174,8 +158,10 @@ form {
 
 	@include respond-min($bp-mid) {
 		display: inline-block;
+		margin-top: 20px;
 	}
 	@include respond-min($bp-wide) {
+		margin-top: 10px;
 	
 	}
 
