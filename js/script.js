@@ -97,7 +97,7 @@ function checkAgain() {
 	
 	$(window).resize(function() {
 		
-		Core.Config.setStageSize();
+	//	Core.Config.setStageSize();
 
 	});
 
@@ -136,6 +136,8 @@ function checkAgain() {
 		calculateRateBtn : document.querySelector(".round-bubble-button"),
 		FBshare : document.querySelector(".fb-share"),
 		TWshare : document.querySelector(".tw-share"),
+		downloadBtn : document.querySelector(".download-btn"),
+
 
 		canvasObject : document.getElementById("canvas"),
 
@@ -248,6 +250,7 @@ function checkAgain() {
 			var rateActivity;
 			var ratePartners;
 			var rateSucess;
+			var activeYearsForRate;
 
 			Core.Config.activeYears = Core.Config.age - Core.Config.virginity;
 //			Core.Config.activeMonths = Core.Config.activeYears*12;
@@ -294,7 +297,6 @@ function checkAgain() {
 			};
 			// 50 points based on your success getting laid.
 
-
 			rateSuccess = (Math.round((Core.Config.partners/Core.Config.activeYears)*10));
 
 			if(rateSuccess >= 50 ) { 
@@ -328,7 +330,10 @@ function checkAgain() {
 			Core.Config.resultInjectorCanvas(Core.Config.rate+"%",200,90);
 			Core.Config.resultInjectorCanvas(Core.Config.rateDescription1,250,20);		
 			Core.Config.resultInjectorCanvas(Core.Config.rateDescription2,270,20);		
-			Core.Config.resultInjectorCanvas(Core.Config.rateDescription3,290,20);		
+			Core.Config.resultInjectorCanvas(Core.Config.rateDescription3,290,20);	
+
+
+			Core.Config.activateShareOnCanvasBtns();	
 		},
 
 		resultInjectorCanvas : function (text,ypos,fontSize) { 
@@ -484,11 +489,45 @@ function checkAgain() {
 
 		activateShareOnCanvasBtns : function () { 
 
-			Core.Config.TWshare.addEventListener("click",postToTwitter);
+			Core.Config.downloadBtn.addEventListener("click",Core.Config.downloadToLocal);
 
-			Core.Config.TWshare.addEventListener("click",postCanvasToFacebook);
+//			Core.Config.TWshare.addEventListener("click",postToTwitter);
+//			Core.Config.TWshare.addEventListener("click",postToFacebook);
 
 		},
+
+		postToTwitter: function () { 
+
+		},
+
+		postToFacebook : function () { 
+
+		} ,
+
+		downloadToLocal : function () { 
+
+			    // var canvas = document.getElementById("mycanvas");
+    			// var img    = canvas.toDataURL("image/jpeg");
+    			// document.write('<img src="'+mySexRate+'"/>');
+    			console.log("downloadToLocal");
+    			downloadCanvas(this, 'canvas', 'mySexRate.png'); 
+		},
+
+		/**
+		 * This is the function that will take care of image extracting and
+		 * setting proper filename for the download.
+		 * IMPORTANT: Call it from within a onclick event.
+		*/
+		downloadCanvas : function(link, canvasId, filename) {
+		    link.href = document.getElementById(canvasId).toDataURL();
+		    link.download = filename;
+		}
+
+		/** 
+		 * The event handler for the link's onclick event. We give THIS as a
+		 * parameter (=the link element), ID of the canvas and a filename.
+		*/
+
 	}
 
 })(window.Core = window.Core || {}, jQuery);
