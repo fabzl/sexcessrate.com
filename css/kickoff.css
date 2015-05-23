@@ -1722,7 +1722,9 @@ pre {
  * Global app/site styles
  */
 body {
-  background-color: #07a089; }
+  background-color: #07a089;
+  font-style: normal;
+  font-variant: normal; }
 
 /**
  * Default layout container
