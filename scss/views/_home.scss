@@ -1,8 +1,11 @@
 
 
+
 html, body {
     max-width: 100%;
     overflow-x: hidden;
+   	font-family:'OstrichSansRounded-Medium','Arial','Verdana';
+
 }
 
 
@@ -24,6 +27,7 @@ form {
 	font-size: 2em;
 	transform:	none;
 	margin-bottom: 50px;
+	font-family:'OstrichSansRounded-Medium','Arial','Verdana';
 
 
 	@include respond-min(829px) {
@@ -121,7 +125,7 @@ form {
 	font-size: 2.5em;
 	color: $sunny-brown;
 	user-select: none;
-	font-family:'OstrichSansRounded-Medium';
+	font-family:'OstrichSansRounded-Medium','Arial','Verdana';
 	margin-top:20px;
 	margin-bottom:30px;
 	max-width: 320px;

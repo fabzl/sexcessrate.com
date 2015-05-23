@@ -3,5 +3,6 @@
   SYSTEM "http://www.macromedia.com/xml/dtds/cross-domain-policy.dtd">
 <cross-domain-policy>
   <allow-access-from domain="googleads.g.doubleclick.net" />
+  <allow-access-from domain="https://googleads.g.doubleclick.net"/>
   <allow-access-from domain="www.fabz.tv"/>
 </cross-domain-policy>

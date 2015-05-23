@@ -510,7 +510,7 @@ function checkAgain() {
     			// var img    = canvas.toDataURL("image/jpeg");
     			// document.write('<img src="'+mySexRate+'"/>');
     			console.log("downloadToLocal");
-    			downloadCanvas(this, 'canvas', 'mySexRate.png'); 
+    			Core.Config.downloadCanvas(this,Core.Config.canvasObject, 'mySexRate.png'); 
 		},
 
 		/**
@@ -519,15 +519,20 @@ function checkAgain() {
 		 * IMPORTANT: Call it from within a onclick event.
 		*/
 		downloadCanvas : function(link, canvasId, filename) {
-		    link.href = document.getElementById(canvasId).toDataURL();
+		    link.href = canvasId.toDataURL();
+		    console.log(link, canvasId, filename,"image/png");
 		    link.download = filename;
-		}
+		//	Core.Config.tagManagerHandler("tag1","tag1");
+		},
 
 		/** 
 		 * The event handler for the link's onclick event. We give THIS as a
 		 * parameter (=the link element), ID of the canvas and a filename.
 		*/
-
+		tagManagerHandler : function (variable_name,variable_value)  {
+			dataLayer.push({ 'variable_name' : 'variable_value' });
+			console.log("tag manager");
+		}
 	}
 
 })(window.Core = window.Core || {}, jQuery);

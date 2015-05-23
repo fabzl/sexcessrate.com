@@ -5,9 +5,9 @@
 			{
 			"0":{
 				"title" : "Fugly", 
-				"description1":  "You must have some sort of physical deformity.",
-				"description2":  "Good luck. It’ll probably never get better.",
-				"description3":  ""
+				"description1":  "You must have some sort  ",
+				"description2":  "of physical deformity.Good luck.",
+				"description3":  "It’ll probably never get better."
 			},
 			"1": {
 				"title" : "Virgin", 
@@ -36,21 +36,21 @@
 			},
 			"5":{
 				"title" : "Repeat offender ",
-				"description1": "Either they keep coming back for more or you’re seriously lazy.",
-				"description2":  "",
+				"description1": "Either they keep coming back for more ",
+				"description2":  "or you’re seriously lazy.",
 				"description3":  ""	 
 			 },
 			"6":{
 				"title" : "Puny Penis",
-				"description1": "They laugh you out of the bedroom before you get a chance,",
-				"description2":  "don’t they?",
-				"description3":  ""	 
+				"description1": "They laugh you out of the bedroom ",
+				"description2":  "before you get a chance,",
+				"description3":  "don’t they?"	 
 			},
 			"7":{
-				"title" : "Puny Penis" ,
-				"description1": "They laugh you out of the bedroom before you get a chance,",
-				"description2":  "don’t they?",
-				"description3":  ""	 
+				"title" : "Glorious Warrior" ,
+				"description1": "Deadly hunter",
+				"description2":  "Where you put you're eye",
+				"description3":  "you put your bullet."	 
 			},
 			"8":{
 				"title" : "Rampant rider ",
@@ -73,9 +73,9 @@
 			"3":"Thirty is a nice age, especially if you are to be forty.",
 			"4":"Mid way sign for you",
 			"5":"Are you taking hormons?",
-			"6":"How come you are alive.",
-			"7":"How come you are alive.",
-			"8":"How come you are alive.",
+			"6":"Oh oh, your life started to change",
+			"7":"Your golden age",
+			"8":"Get yourself a plaque",
 			"9":"How come you are alive."
 
 			},
@@ -87,25 +87,25 @@
 				"2":"just when the flowers blossom",
 				"3":"you take it slow",
 				"4":"you wait for the right one",
-				"5":"did you put a price tag on it",
-				"6":"did you put a price tag on it",
+				"5":"you miss the best years of your life",
+				"6":"where you in a dungeon ?",
 				"7":"did you put a price tag on it",
-				"8":"did you put a price tag on it",
-				"9":"did you put a price tag on it"
+				"8":"You think Ill believe that",
+				"9":"Yeah, nothing really works at this age."
 			},
 
 		"flavourAnswersPersons" : 
 			{
 				"0":"monogamy means a lot to you",
 				"1":"you are not quite a million bucks",
-				"2":"show them some moves",
-				"3":"good effort",
-				"4":"good effort",
-				"5":"good effort",
+				"2":"Maybe a fashion emergency ?",
+				"3":"Keep going champ",
+				"4":"The magic number",
+				"5":"you got it !",
 				"6":"good effort",
-				"7":"brave warrior",
-				"8":"Don Juan is your new name",
-				"9":"You slut"
+				"7":"you, Latin Lover",
+				"8":"Don Juan <3",
+				"9":"You slut !!!"
 
 			}
 
