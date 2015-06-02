@@ -1,6 +1,135 @@
 /*	Author:
 	Fabz&co Fabz - Fabian Andrade.. fabz.tv
 */
+///// DOWNLOAD
+
+(function (root, factory) {
+	if (typeof define === 'function' && define.amd) {
+		// AMD. Register as an anonymous module.
+		define([], factory);
+	} else if (typeof exports === 'object') {
+		// Node. Does not work with strict CommonJS, but
+		// only CommonJS-like environments that support module.exports,
+		// like Node.
+		module.exports = factory();
+	} else {
+		// Browser globals (root is window)
+		root.download = factory();
+  }
+}(this, function () {
+
+	return function download(data, strFileName, strMimeType) {
+
+		var self = window, // this script is only for browsers anyway...
+			u = "application/octet-stream", // this default mime also triggers iframe downloads
+			m = strMimeType || u,
+			x = data,
+			D = document,
+			a = D.createElement("a"),
+			z = function(a){return String(a);},
+			B = (self.Blob || self.MozBlob || self.WebKitBlob || z);
+			B=B.call ? B.bind(self) : Blob ;
+			var fn = strFileName || "download",
+			blob,
+			fr;
+
+
+		if(String(this)==="true"){ //reverse arguments, allowing download.bind(true, "text/xml", "export.xml") to act as a callback
+			x=[x, m];
+			m=x[0];
+			x=x[1];
+		}
+
+		//go ahead and download dataURLs right away
+		if(String(x).match(/^data\:[\w+\-]+\/[\w+\-]+[,;]/)){
+			return navigator.msSaveBlob ?  // IE10 can't do a[download], only Blobs:
+				navigator.msSaveBlob(d2b(x), fn) :
+				saver(x) ; // everyone else can save dataURLs un-processed
+		}//end if dataURL passed?
+
+		blob = x instanceof B ?
+			x :
+			new B([x], {type: m}) ;
+
+
+		function d2b(u) {
+			var p= u.split(/[:;,]/),
+			t= p[1],
+			dec= p[2] == "base64" ? atob : decodeURIComponent,
+			bin= dec(p.pop()),
+			mx= bin.length,
+			i= 0,
+			uia= new Uint8Array(mx);
+
+			for(i;i<mx;++i) uia[i]= bin.charCodeAt(i);
+
+			return new B([uia], {type: t});
+		 }
+
+		function saver(url, winMode){
+
+			if ('download' in a) { //html5 A[download]
+				a.href = url;
+				a.setAttribute("download", fn);
+				a.innerHTML = "downloading...";
+				D.body.appendChild(a);
+				setTimeout(function() {
+					a.click();
+					D.body.removeChild(a);
+					if(winMode===true){setTimeout(function(){ self.URL.revokeObjectURL(a.href);}, 250 );}
+				}, 66);
+				return true;
+			}
+
+			if(typeof safari !=="undefined" ){ // handle non-a[download] safari as best we can:
+				url="data:"+url.replace(/^data:([\w\/\-\+]+)/, u);
+				if(!window.open(url)){ // popup blocked, offer direct download:
+					if(confirm("Displaying New Document\n\nUse Save As... to download, then click back to return to this page.")){ location.href=url; }
+				}
+				return true;
+			}
+
+			//do iframe dataURL download (old ch+FF):
+			var f = D.createElement("iframe");
+			D.body.appendChild(f);
+
+			if(!winMode){ // force a mime that will download:
+				url="data:"+url.replace(/^data:([\w\/\-\+]+)/, u);
+			}
+			f.src=url;
+			setTimeout(function(){ D.body.removeChild(f); }, 333);
+
+		}//end saver
+
+
+
+
+		if (navigator.msSaveBlob) { // IE10+ : (has Blob, but not a[download] or URL)
+			return navigator.msSaveBlob(blob, fn);
+		}
+
+		if(self.URL){ // simple fast and modern way using Blob and URL:
+			saver(self.URL.createObjectURL(blob), true);
+		}else{
+			// handle non-Blob()+non-URL browsers:
+			if(typeof blob === "string" || blob.constructor===z ){
+				try{
+					return saver( "data:" +  m   + ";base64,"  +  self.btoa(blob)  );
+				}catch(y){
+					return saver( "data:" +  m   + "," + encodeURIComponent(blob)  );
+				}
+			}
+
+			// Blob but not URL:
+			fr=new FileReader();
+			fr.onload=function(e){
+				saver(this.result);
+			};
+			fr.readAsDataURL(blob);
+		}
+		return true;
+	}; /* end download() */
+}));
 
 
 ////////////////////PROTOTYPES
@@ -58,7 +187,6 @@ CanvasRenderingContext2D.prototype.wrapText = function (text, x, y, maxWidth, li
 function adBlockDetected() {
 
 		console.log("adBlockDetected");
-		Core.Config.adBlockRoadBlock();	
 		Core.Config.roadBlock.classList.toggle("active");
 	}
 function adBlockNotDetected() {
@@ -97,14 +225,10 @@ function checkAgain() {
 	
 	$(window).resize(function() {
 		
-	//	Core.Config.setStageSize();
 
 	});
 
 	$(function() {
-		// Any globals go here in CAPS (but avoid if possible)
-		// follow a singleton pattern
-		// (http://addyosmani.com/resources/essentialjsdesignpatterns/book/#singletonpatternjavascript)
 		Core.Config.init();
 
 	});// END DOC READY
@@ -143,16 +267,6 @@ function checkAgain() {
 
 		roadBlock : document.getElementById("roadBlock"),
 
-		//scrollbar : new Control.ScrollBar('scrollbar_content','scrollbar_track'),
-
-		scrollBarController : function (value) { 
-
-			 $( "body" ).scroll(Core.Config.canvasObject);
-		},
-
-		adBlockRoadBlock : function () { 
-
-		},
 
 		init : function () {
 
@@ -162,17 +276,7 @@ function checkAgain() {
 		},
 
 		
-		setStageSize:function() {
 
-			// Returns height of HTML document
-
-			Core.Config.$window.stageH = Core.Config.getDimensionsHeight(Core.Config.$window);
-
-			Core.Config.$window.stageW = Core.Config.getDimensionsWidth(Core.Config.$window);
-
-			console.log("stage size is H : ", Core.Config.$window.stageH,"W : ",Core.Config.$window.stageW);
-
-		},
 
 		getDimensionsHeight:function (obj) {
 
@@ -261,9 +365,8 @@ function checkAgain() {
 			var activeYearsForRate;
 
 			Core.Config.activeYears = Core.Config.age - Core.Config.virginity;
-//			Core.Config.activeMonths = Core.Config.activeYears*12;
-		
-			// we set the partners range to a maximun of 100
+
+		// we set the partners range to a maximun of 100
 			if(	Core.Config.partners >= 100 ) {
 				Core.Config.partners = 100;
 			};
@@ -332,7 +435,7 @@ function checkAgain() {
 
 		resultInjector : function () { 
 
-
+			// on getting result
 			Core.Config.canvasEraser();
 			Core.Config.resultInjectorCanvas("Your Sexcess rate is  :",70,30);
 			Core.Config.resultInjectorCanvas(Core.Config.rateTitle,120,45);
@@ -341,22 +444,33 @@ function checkAgain() {
 			Core.Config.resultInjectorCanvas(Core.Config.rateDescription2,270,20);		
 			Core.Config.resultInjectorCanvas(Core.Config.rateDescription3,290,20);	
 
-
-
-			Core.Config.scrollBarController("bottom");
-			// scroll to bottom
-		//	$('html, body').animate({scrollTop:$(document).height()}, 'slow');
-
-			//document.location="#controlID";
-
 			Core.Config.activateShareOnCanvasBtns();	
+			Core.Config.scrollWindow($(document).height());
+
+
+		},
+
+		buttonAnimations:function (object) { 
+
+		//	object.classList(".highlighter"); 
+			object.classList.toggle("highlighter");
+
+		},
+
+		scrollWindow:function(posY) {
+			
+
+			window.scrollTo(0,posY);
+			console.log(posY);
+
+			// $('html, body').animate({scrollTop:$(document).height()}, 'slow');
+
 		},
 
 		resultInjectorCanvas : function (text,ypos,fontSize) { 
 
 			var context = Core.Config.canvasObject.getContext("2d");
   			var xpos = Core.Config.canvasObject.width / 2;
-      	//	var ypos = Core.Config.canvasObject.height / 2;
   			context.fillStyle = "#312a11";
   			context.fontStyle = "normal";
   			context.font = "normal "+fontSize+"px OstrichSansRounded-Medium";
@@ -364,9 +478,54 @@ function checkAgain() {
   			context.fillText(text, xpos, ypos);
 
 		},
+
+		/**
+		 * Draws a rounded rectangle using the current state of the canvas. 
+		 * If you omit the last three params, it will draw a rectangle 
+		 * outline with a 5 pixel border radius 
+		 * @param {CanvasRenderingContext2D} ctx
+		 * @param {Number} x The top left x coordinate
+		 * @param {Number} y The top left y coordinate 
+		 * @param {Number} width The width of the rectangle 
+		 * @param {Number} height The height of the rectangle
+		 * @param {Number} radius The corner radius. Defaults to 5;
+		 * @param {Boolean} fill Whether to fill the rectangle. Defaults to false.
+		 * @param {Boolean} stroke Whether to stroke the rectangle. Defaults to true.
+		 */
+		roundRect : function (ctx, x, y, width, height, radius, fill, stroke) {
+		  if (typeof stroke == "undefined" ) {
+		    stroke = true;
+		  }
+		  if (typeof radius === "undefined") {
+		    radius = 5;
+		  }
+		  ctx.beginPath();
+		  ctx.moveTo(x + radius, y);
+		  ctx.lineTo(x + width - radius, y);
+		  ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+		  ctx.lineTo(x + width, y + height - radius);
+		  ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+		  ctx.lineTo(x + radius, y + height);
+		  ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+		  ctx.lineTo(x, y + radius);
+		  ctx.quadraticCurveTo(x, y, x + radius, y);
+		  ctx.closePath();
+		  if (stroke) {
+		    ctx.stroke();
+		  }
+		  if (fill) {
+		    ctx.fill();
+		  }        
+		},
+
+
 		canvasEraser : function () { 
 			var context = Core.Config.canvasObject.getContext("2d");
 			context.clearRect(0, 0, Core.Config.canvasObject.width, Core.Config.canvasObject.height);
+			// draw the colour fill for the img bg
+			context.fillStyle = "#c2d14a";
+			Core.Config.roundRect(context, 0, 0, Core.Config.canvasObject.width, Core.Config.canvasObject.height,25, true, false);
+
 		},
 
 		getRateAnswer : function () { 
@@ -475,6 +634,7 @@ function checkAgain() {
 		},
 
 
+
 		answersManager : function (question,value) {
 
 			var answer ; 
@@ -511,86 +671,31 @@ function checkAgain() {
 //			Core.Config.TWshare.addEventListener("click",postToTwitter);
 //			Core.Config.TWshare.addEventListener("click",postToFacebook);
 
-		},
-
-		postToTwitter: function () { 
+		//	Core.Config.downloadToLocal();
 
 		},
 
-		postToFacebook : function () { 
+		// postToTwitter: function () { 
 
-		} ,
+		// },
+
+		// postToFacebook : function () { 
+
+		// } ,
 
 		downloadToLocal : function () { 
 
-			    // var canvas = document.getElementById("mycanvas");
-    			// var img    = canvas.toDataURL("image/jpeg");
-    			// document.write('<img src="'+mySexRate+'"/>');
-    			console.log("downloadToLocal");
-    			Core.Config.downloadCanvas(this,Core.Config.canvasObject, 'mySexRate.png'); 
-		},
-
-		/**
-		 * This is the function that will take care of image extracting and
-		 * setting proper filename for the download.
-		 * IMPORTANT: Call it from within a onclick event.
-		*/
-	
+    		Core.Config.downloadCanvas(this,Core.Config.canvasObject, 'mySexRate.jpg'); 
+		},	
 
 		downloadCanvas : function(link, canvasId, filename) {
-		    
+			
 
+			var dataString = canvasId.toDataURL("image/jpg");
+			dataString = dataString.replace("image/jpg", "image/octet-stream");
+			// uses the download class to manage the download.
+     		download(dataString, filename, "image/octet-stream");
 
-		//    var dataString = Core.Config.canvasObject.getContext("2d").drawImage(canvasId.toDataURL("image/png"),Core.Config.canvasObject.width,Core.Config.canvasObject.height);
-			var dataString = canvasId.toDataURL("image/png");
-	//		var dataString = canvasId.getImageData(0,320,320,320);
-			//var dataString = canvasId.toDataURL("image/png");
-			//Core.Config.downloadBtn.setAttribute("href", dataString.toString());
-			//dataString.setAttribute("download", filename);
-			console.log (dataString);
-
-			//var ctx = Core.Config.canvasObject.getContext('2d');
-			//var img = new Image();
-			dataString = dataString.replace("image/png", "image/octet-stream");
-     		
-			//img.onload = function () {
-   			//	ctx.drawImage(img,0,0);
-		//}
-
-			var link = document.createElement('a');
-			link.href = dataString;
-    		link.download = filename;
-    		//link.attributes[0].name  = "nama";
-
-			console.dir(link.attributes);
-		
-
-     		console.log (link);
-     		console.dir (dataString);
-
-
-     		//document.location.download  ='mySexcessRate.png'; 
-     		document.location.href = link;
-		//	var fs = require('fs');
-		// string generated by canvas.toDataURL()
-
-// strip off the data: url prefix to get just the base64-encoded bytes			
-		//	var data = dataString.replace(/^data:image\/\w+;base64,/, "");
-		//	var buf = new Buffer(data, 'base64');
-		//		var image = fs.writeFile(filename, buf);
-			 //ctx.drawImage(img,10,10);
-
-		//	var uriContent = "data:application/octet-stream," + encodeURIComponent( dataString);
-	//	window.open(uriContent, 'yourSexcessRate');
-
-
-			//window.open(dataString);
-		//	window.download(dataString);
-
-		   // link.href = canvasId.toDataURL();
-		   // console.log(link, canvasId, filename,"image/png");
-		   // link.download = filename;
-			//	Core.Config.tagManagerHandler("tag1","tag1");
 		},
 
 		/** 

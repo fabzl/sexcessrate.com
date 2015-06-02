@@ -1960,6 +1960,30 @@ form {
     .banner-holder-leaderboard {
       display: block; } }
 
+@-webkit-keyframes Pulse {
+  from {
+    background-color: #c2d14a;
+    trasform: scale(1); }
+
+  50% {
+    background-color: #f2542a;
+    trasform: scale(1.3); }
+
+  to {
+    background-color: #c2d14a;
+    trasform: scale(1); } }
+
+.highlighter {
+  -webkit-animation-name: Pulse;
+     -moz-animation-name: Pulse;
+          animation-name: Pulse;
+  -webkit-animation-duration: 2s;
+     -moz-animation-duration: 2s;
+          animation-duration: 2s;
+  -webkit-animation-iteration-count: infinite;
+     -moz-animation-iteration-count: infinite;
+          animation-iteration-count: infinite; }
+
 /**
  * Helper/utility classes
  * =================================

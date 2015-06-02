@@ -31,7 +31,8 @@ module.exports = function (grunt) {
 					// uncomment the line below to compile Shimly output
 					//'js/helpers/shims.js',
 					'js/libs/fuckadblock.js',
-					'js/helpers/console.js',
+					'js/libs/canvas-to-blob.js',
+					'js/libs/fuckadblock.js',
 					'bower_modules/trak/dist/trak.js',
 					'bower_modules/swiftclick/js/libs/swiftclick.js',
 					'bower_modules/cookies-js/dist/cookies.js',
